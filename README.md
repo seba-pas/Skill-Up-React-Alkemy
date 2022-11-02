@@ -18,6 +18,6 @@ Al finalizar la instalacion de dependencias lanzar el comando 'npm start' para c
 antes de crear una rama con git branch NombreDeRama hacer
 
 <h1>GIT BRANCH -A</h1>
-<h1>GIT chechout dev </h1>
+<h1>GIT checkout dev </h1>
 <h1>git branch NombreDeRama </h1>
-<h1>git chechout NombreDeRama </h1>
+<h1>git checkout NombreDeRama </h1>
