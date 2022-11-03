@@ -3,9 +3,9 @@ import { clearLocalStorage, persistLocalStorage } from '../../utilities/localSto
 
 export const EmptyUserState = {
     name: '',
-    id_user: '',
-    rol: '',
-    token: ''
+    id_user: '12312',
+    rol: '12312',
+    token: '123'
 };
 
 export const UserKey = 'user_wallet';
