@@ -16,19 +16,19 @@ const Buttons = () => {
                 <Button
                     onClick={() => navigation()}
                     size="large"
-                    sx={{ backgroundColor: '#2660a4', borderColor: 'transparent' }}>
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Cargar Saldo
                 </Button>
                 <Button
                     onClick={() => navigation()}
                     size="large"
-                    sx={{ backgroundColor: '#2660a4', borderColor: 'transparent' }}>
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Gastos
                 </Button>
                 <Button
                     onClick={() => navigation()}
                     size="large"
-                    sx={{ backgroundColor: '#2660a4', borderColor: 'transparent' }}>
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Movimientos
                 </Button>
             </ButtonGroup>

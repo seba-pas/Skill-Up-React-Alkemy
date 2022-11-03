@@ -10,7 +10,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
-import {useState} from 'react'
+import { useState } from 'react';
 
 export default function ButtonAppBar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -36,10 +36,17 @@ export default function ButtonAppBar() {
                             Alkemy Wallet
                         </Typography>
                         <Drawer
-                            style={{ height: '60vh', width: '50vw'}}
+                            style={{ height: '60vh', width: '50vw' }}
                             open={isDrawerOpen}
                             onClose={() => setIsDrawerOpen(false)}>
-                            <List style={{ fontSize: '30px', fontWeight: '600', height: '100vh', backgroundColor: '#2660A4', color: 'white'  }}>
+                            <List
+                                style={{
+                                    fontSize: '30px',
+                                    fontWeight: '600',
+                                    height: '100vh',
+                                    backgroundColor: '#2660A4',
+                                    color: 'white'
+                                }}>
                                 <ListItem button>
                                     <ListItemText primary="Home" />
                                 </ListItem>

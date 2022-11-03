@@ -14,8 +14,14 @@ const bull = (
 
 const card = (
     <React.Fragment>
-        <CardContent sx={{ backgroundColor: '#2660a4', borderRadius: '12px' }}>
-            <Typography sx={{ fontSize: 25 }} color="white" gutterBottom>
+        <CardContent
+            sx={{
+                height: '138px',
+                width: '327px',
+                background: 'linear-gradient(93.46deg, #133FDB 0%, rgba(183, 0, 77, 0.7) 103.75%)',
+                borderRadius: '16px'
+            }}>
+            <Typography sx={{ fontSize: 14, fontWeight: 400 }} color="white" gutterBottom>
                 SALDO ACTUAL
             </Typography>
             <Typography variant="h3" component="div" color="white">
