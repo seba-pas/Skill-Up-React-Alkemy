@@ -1,7 +1,7 @@
 import React from 'react';
 import './saldo2.css';
 
-const Saldo2 = () => {
+function Saldo2() {
     return (
         <div className="container">
             <div className="saldo_card">
@@ -13,6 +13,6 @@ const Saldo2 = () => {
             </div>
         </div>
     );
-};
+}
 
 export default Saldo2;
