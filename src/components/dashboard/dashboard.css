@@ -1,5 +1,29 @@
+.circle {
+    position: absolute;
+    right: -180px;
+    top: -180px;
+    width: 400px;
+    height: 400px;
+    position: fixed;
 
+    border-radius: 50%;
+    z-index: -1;
 
+    background: #f8e192;
+}
+.circle2 {
+    position: absolute;
+    left: -150px;
+    top: 300px;
+    width: 400px;
+    height: 400px;
+    position: fixed;
+
+    border-radius: 50%;
+    z-index: -1;
+
+    background: rgba(47, 203, 252, 0.3);
+}
 .saldo_container {
     margin-top: 40px;
     display: flex;
@@ -15,7 +39,7 @@
 }
 
 .saldo {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-content: center;
     margin-top: 10%;
@@ -27,11 +51,10 @@
 
 .buttons {
     margin-top: 50px;
-
 }
 .buttons button {
     background: blue;
-    color:white;
+    color: white;
     font-weight: 600;
     border-color: white;
     margin: 10px;
