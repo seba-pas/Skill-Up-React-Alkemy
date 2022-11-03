@@ -1,22 +1,18 @@
-import { Fragment } from "react";
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable prettier/prettier */
+// eslint-disable-next-line import/no-duplicates
 import { useNavigate } from "react-router-dom";
-import React from "react";
-import "../HojasDeEstilo/Login.css"
-import Swal from 'sweetalert2'
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+// eslint-disable-next-line import/no-unresolved
+import Swal from 'sweetalert2';
+// eslint-disable-next-line import/no-unresolved
 
 
 function Login() {
-
-    let navigate = useNavigate();
-    let navigateCreateAcount = useNavigate()
-
+    const navigate = useNavigate();
     const submitHandler = (e) => {
-        e.preventDefault()
-        const email = e.target.email.value.trim()
-        const password = e.target.password.value.trim()
-
+        e.preventDefault();
+        const email = e.target.email.value.trim();
+        const password = e.target.password.value.trim();
 
         if (email !== 'ingresarapi@hotmail.com' || password !== 'pokemones') {
             Swal.fire({
@@ -25,7 +21,7 @@ function Login() {
                 icon: 'error',
                 confirmButtonText: 'Ok'
 
-            })
+            });
         }
 
 
@@ -36,60 +32,52 @@ function Login() {
                 text: 'Ingresando...',
                 icon: 'exit',
                 confirmButtonText: 'OK'
-
-            })
-            navigate('/')
+            });
+            navigate('/');
         }
-
-
-    }
-
-    const HandleSubmit = () => {
-        navigateCreateAcount('/CreateAccount')
-    }
-
+    };
 
     return (
-        <Fragment>
-            <div class="contenedor-imagen">
+        <>
+            <div className="contenedor-imagen">
                 <h2 className="text-center">Bienvenido</h2>
-                <img alt="Logo-principal" class="imagen" />
+                <img alt="Logo-principal" className="imagen" />
             </div>
-            <section class="vh-50">
-                <div class="container-fluid h-custom">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
+            <section className="vh-50">
+                <div className="container-fluid h-custom">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
 
-                        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                             <form onSubmit={submitHandler}>
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example3">Usuario</label>
+                                <div className="form-outline mb-4">
+
                                     <input type="email" placeholder="Correo Electroníco" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
-                                        required minlength="1" maxlength="25" class="form-control form-control-lg" />
+                                        required minLength="1" maxLength="25" className="form-control form-control-lg" />
 
                                 </div>
 
 
-                                <div class="form-outline mb-3">
-                                    <label class="form-label" for="form3Example4">Contraseña</label>
-                                    <input type="password" placeholder="Contraseña" id="exampleInputPassword1" name="password" required minlength="4" maxlength="12" class="form-control form-control-lg" />
+                                <div className="form-outline mb-3">
+
+                                    <input type="password" placeholder="Contraseña" id="exampleInputPassword1" name="password" required minLength="4" maxLength="12" className="form-control form-control-lg" />
                                 </div>
 
-                                <div class="d-flex justify-content-between align-items-center">
+                                <div className="d-flex justify-content-between align-items-center">
 
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                        <label class="form-check-label" for="form2Example3">
+                                    <div className="form-check mb-0">
+                                        <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                                        <label className="form-check-label" >
                                             Recordar
                                         </label>
                                     </div>
-                                    <a href="#!" class="text-body">¿Olvidaste tu contraseña?</a>
+                                    <a href="#!" className="text-body">¿Olvidaste tu contraseña?</a>
                                 </div>
 
-                                <div class="text-center text-lg-start mt-4 pt-2">
-                                    <button type="submit" class="btn btn-primary btn-lg"
+                                <div className="text-center text-lg-start mt-4 pt-2">
+                                    <button type="submit" className="btn btn-primary btn-lg"
                                     >Iniciar sesión </button>
-                                    <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta? <a href="/CreateAccount"
-                                        class="link-danger">Registrate!</a></p>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0">¿No tienes una cuenta? <a href="/CreateAccount"
+                                        className="link-danger">Registrate!</a></p>
                                 </div>
 
                             </form>
@@ -100,7 +88,7 @@ function Login() {
             </section>
 
 
-        </Fragment>
+        </>
 
 
     )
