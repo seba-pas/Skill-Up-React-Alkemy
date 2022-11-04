@@ -11,6 +11,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
 import { useState } from 'react';
+import { Link } from '@mui/material';
 
 export default function ButtonAppBar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -33,8 +34,11 @@ export default function ButtonAppBar() {
                             variant="h4"
                             component="div"
                             sx={{ flexGrow: 1 }}>
-                            Alkemy Wallet
+                            <Link href="/" underline="none" color="white">
+                                Alkemy Wallet
+                            </Link>
                         </Typography>
+
                         <Drawer
                             style={{ height: '60vh', width: '50vw' }}
                             open={isDrawerOpen}

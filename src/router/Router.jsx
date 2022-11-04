@@ -6,6 +6,7 @@ import AuthGuard from './AuthGuard';
 import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
 import { PRIVATE, PUBLIC } from './PathUrl';
+import CargaSaldo from '../components/carga saldo/CargaSaldo';
 
 const Signin = lazy(() => import('../pages/Signin/Signin'));
 
@@ -24,6 +25,7 @@ function Router() {
                     <Route element={<AuthGuard />}>
                         <Route element={<PrivateLayout />}>
                             <Route path={PRIVATE.home} element={<Dashboard />} />
+                            <Route path={PRIVATE.cargarSaldo} element={<CargaSaldo />} />
                         </Route>
                     </Route>
                 </RoutesWithNotFound>

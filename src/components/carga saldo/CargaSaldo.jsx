@@ -1,15 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-
-
-const CargaSaldo = () => {
-  return (
-    <div>
-
-
-
-    </div>
-  )
+function CargaSaldo() {
+    return <div>seccion de carga de</div>;
 }
 
-export default CargaSaldo
+export default CargaSaldo;

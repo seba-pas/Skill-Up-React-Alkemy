@@ -1,12 +1,15 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Stack from '@mui/material/Stack';
+// import Stack from '@mui/material/Stack';
+import { useNavigate } from 'react-router-dom';
+import { PRIVATE } from '../../router/PathUrl';
 
-const Buttons = () => {
-    const navigation = () => {
-        //aca va la funcion para navehgar
-        console.log('navegando para algun lado ');
+function Buttons() {
+    const navigate = useNavigate();
+    const navigation = (url) => {
+        // aca va la funcion para navehgar
+        navigate(url);
     };
 
     return (
@@ -14,7 +17,7 @@ const Buttons = () => {
             {' '}
             <ButtonGroup variant="contained" aria-label="primary button group">
                 <Button
-                    onClick={() => navigation()}
+                    onClick={() => navigation(PRIVATE.cargarSaldo)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Cargar Saldo
@@ -34,6 +37,6 @@ const Buttons = () => {
             </ButtonGroup>
         </div>
     );
-};
+}
 
 export default Buttons;

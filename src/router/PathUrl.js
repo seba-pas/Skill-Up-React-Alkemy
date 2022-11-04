@@ -3,5 +3,6 @@ export const PUBLIC = {
 };
 
 export const PRIVATE = {
-    home: '/app/home'
+    home: '/app/home',
+    cargarSaldo: '/app/cargar-saldo'
 };
