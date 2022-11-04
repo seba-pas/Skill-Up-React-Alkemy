@@ -12,7 +12,7 @@ export default function Footer() {
                         <Chip
                             label="Sitio desarrollado por Grupo 3 de Alkymers. 2022"
                             variant="outlined"
-                            className='chipFooter'
+                            className="chipFooter"
                         />
                     </Toolbar>
                 </AppBar>
