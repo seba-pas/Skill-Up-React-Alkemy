@@ -1,22 +1,32 @@
-import { Suspense } from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
-// import RoutesWithNotFound from './RoutesWithNotFound';
-// import AuthGuard from './AuthGuard';
-import Dashboard from '../components/dashboard/Dashboard';
+// hooks
+import { Suspense, lazy } from 'react';
+import { Route, BrowserRouter, Navigate } from 'react-router-dom';
+import AuthGuard from './AuthGuard';
+// pages
+import RoutesWithNotFound from './RoutesWithNotFound';
+// utils
+import { PRIVATE, PUBLIC } from './PathUrl';
+
+const Signin = lazy(() => import('../pages/Signin/Signin'));
+
+const Dashboard = lazy(() => import('../pages/Private/Home/Home'));
+const PrivateLayout = lazy(() => import('../layout/PrivateLayout/PrivateLayout'));
 
 function Router() {
     return (
         <Suspense fallback={<h3>loading</h3>}>
             <BrowserRouter>
-                {/* <RoutesWithNotFound>
-                    <Route path="/login" element={<span>Login</span>} />
+                <RoutesWithNotFound>
+                    <Route path="/" element={<Navigate to={PRIVATE.home} />} />
+
+                    <Route path={PUBLIC.login} element={<Signin />} />
+
                     <Route element={<AuthGuard />}>
-                        <Route path="/*" element={<h1> Privado</h1>} />
+                        <Route element={<PrivateLayout />}>
+                            <Route path={PRIVATE.home} element={<Dashboard />} />
+                        </Route>
                     </Route>
-                </RoutesWithNotFound> */}
-                <Routes>
-                    <Route path="/dash" element={<Dashboard />} />
-                </Routes>
+                </RoutesWithNotFound>
             </BrowserRouter>
         </Suspense>
     );

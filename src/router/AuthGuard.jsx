@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux';
 
 function AuthGuard() {
     const userState = useSelector((store) => store.user);
+    const existUser = !!userState.id_user;
 
-    return !userState.id_user ? <Navigate replace to="/login" /> : <Outlet />;
+    return !existUser ? <Navigate replace to="/login" /> : <Outlet />;
 }
 
 export default AuthGuard;
