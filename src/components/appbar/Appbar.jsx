@@ -29,7 +29,7 @@ export default function ButtonAppBar() {
                             <MenuIcon />
                         </IconButton>
                         <Typography
-                            style={{ marginLeft: '-40px' }}
+                            style={{ padding: '1px' }}
                             variant="h4"
                             component="div"
                             sx={{ flexGrow: 1 }}>

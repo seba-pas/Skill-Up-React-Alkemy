@@ -17,14 +17,14 @@ export default function Home() {
             <div className="circle" />
             <ButtonAppBar />
 
-            <div style={{ marginTop: '100px' }}>
+            <div style={{ marginTop: '100px', padding: '2rem' }}>
                 <AvatarUser />
 
                 <Saldo2 />
             </div>
             <div className="circle2" />
 
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '1rem' }}>
                 <Buttons />
             </div>
             {/* <div style={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>

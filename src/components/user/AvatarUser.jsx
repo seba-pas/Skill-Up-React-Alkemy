@@ -14,7 +14,7 @@ const AvatarUser = () => {
                         width: 67,
                         height: 67,
                         border: 3,
-                        marginLeft: 5,
+                        
                         borderColor: 'transparent',
                         background:
                             'linear-gradient(93.46deg, #133FDB 0%, rgba(183, 0, 77, 0.7) 103.75%)'
