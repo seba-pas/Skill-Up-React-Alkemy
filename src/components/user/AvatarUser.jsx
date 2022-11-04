@@ -1,9 +1,9 @@
 import React from 'react';
-import AVT from '../../assets/img/avt.jpg';
 import Avatar from '@mui/material/Avatar';
+import AVT from '../../assets/img/avt.jpg';
 import './avatar.css';
 
-const AvatarUser = () => {
+function AvatarUser() {
     return (
         <div className="head_container">
             <div className="avatar_container">
@@ -14,7 +14,7 @@ const AvatarUser = () => {
                         width: 67,
                         height: 67,
                         border: 3,
-                        
+
                         borderColor: 'transparent',
                         background:
                             'linear-gradient(93.46deg, #133FDB 0%, rgba(183, 0, 77, 0.7) 103.75%)'
@@ -28,6 +28,6 @@ const AvatarUser = () => {
             </div>
         </div>
     );
-};
+}
 
 export default AvatarUser;
