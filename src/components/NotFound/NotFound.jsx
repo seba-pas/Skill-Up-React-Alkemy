@@ -1,13 +1,9 @@
 import { AlertTitle, Container, Fade } from '@mui/material';
-import ButtonAppBar from '../appbar/Appbar';
 import NotFoundBack from '../../assets/img/404-error.webp';
 
 export default function Notfound() {
     return (
         <div className="general_container" style={{ background: 'transparent', height: '100vh' }}>
-            <div className="circle" />
-            <ButtonAppBar />
-
             <div style={{ marginTop: '100px' }} />
             <div className="circle2" />
             <Container>
@@ -24,7 +20,9 @@ export default function Notfound() {
                     />
                 </Fade>
                 <Fade in>
-                    <AlertTitle sx={{ fontSize: 30 }}>Page not found</AlertTitle>
+                    <AlertTitle sx={{ fontSize: 30, textAlign: 'center' }}>
+                        Page not found
+                    </AlertTitle>
                 </Fade>
             </Container>
         </div>

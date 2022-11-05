@@ -59,15 +59,21 @@ export default function ButtonAppBar() {
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Mi Perfil" />
+                                    <Link href={PRIVATE.perfil} underline="none" color="white">
+                                        <ListItemText primary="Mi perfil" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Gastos" />
+                                    <Link href={PRIVATE.gastos} underline="none" color="white">
+                                        <ListItemText primary="Gastos" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Movimientos" />
+                                    <Link href={PRIVATE.movimientos} underline="none" color="white">
+                                        <ListItemText primary="Movimientos" />
+                                    </Link>
                                 </ListItem>
                                 <ListItem button>
                                     <Link href={PRIVATE.cargarSaldo} underline="none" color="white">
@@ -76,7 +82,9 @@ export default function ButtonAppBar() {
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Contactanos" />
+                                    <Link href={PRIVATE.contacto} underline="none" color="white">
+                                        <ListItemText primary="Contáctanos" />
+                                    </Link>
                                 </ListItem>
                             </List>
                         </Drawer>

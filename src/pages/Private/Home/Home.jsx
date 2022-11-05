@@ -2,12 +2,12 @@
 import React from 'react';
 // components
 import Buttons from '../../../components/buttons/Buttons';
-// import ButtonAppBar from '../../../components/appbar/Appbar';
+// import ButtonAppBar from '../../../components/appbar/Appbar';Reubicados
 import Saldo2 from '../../../components/saldo/Saldo2';
 import AvatarUser from '../../../components/user/AvatarUser';
 // styles
 import { ContentHome } from './Home.styles.';
-// import Footer from '../../../components/footer/Footer';
+// import Footer from '../../../components/footer/Footer'; Reubicados
 
 export default function Home() {
     // const [saldo, setSaldo] = useState(0);

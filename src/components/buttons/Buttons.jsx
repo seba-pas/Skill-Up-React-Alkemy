@@ -23,13 +23,13 @@ function Buttons() {
                     Cargar Saldo
                 </Button>
                 <Button
-                    onClick={() => navigation()}
+                    onClick={() => navigation(PRIVATE.gastos)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Gastos
                 </Button>
                 <Button
-                    onClick={() => navigation()}
+                    onClick={() => navigation(PRIVATE.movimientos)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Movimientos
