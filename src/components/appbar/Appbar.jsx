@@ -12,6 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
 import { useState } from 'react';
 import { Link } from '@mui/material';
+import { PRIVATE } from '../../router/PathUrl';
 
 export default function ButtonAppBar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -52,7 +53,9 @@ export default function ButtonAppBar() {
                                     color: 'white'
                                 }}>
                                 <ListItem button>
-                                    <ListItemText primary="Home" />
+                                    <Link href="/" underline="none" color="white">
+                                        <ListItemText primary="Home" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
@@ -67,7 +70,9 @@ export default function ButtonAppBar() {
                                     <ListItemText primary="Movimientos" />
                                 </ListItem>
                                 <ListItem button>
-                                    <ListItemText primary="Agregar Saldo" />
+                                    <Link href={PRIVATE.cargarSaldo} underline="none" color="white">
+                                        <ListItemText primary="Agregar Saldo" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
