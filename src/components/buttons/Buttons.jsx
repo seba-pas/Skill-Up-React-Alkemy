@@ -1,11 +1,14 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Stack from '@mui/material/Stack';
+import { useNewTransactionMutation } from '../../store/services/dataApi';
+// import Stack from '@mui/material/Stack';
 
-const Buttons = () => {
+export default function Buttons() {
+    const [newTransaction] = useNewTransactionMutation();
+
     const navigation = () => {
-        //aca va la funcion para navehgar
+        // //aca va la funcion para navehgar
         console.log('navegando para algun lado ');
     };
 
@@ -31,9 +34,22 @@ const Buttons = () => {
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Movimientos
                 </Button>
+                <Button
+                    onClick={async () => {
+                        const result = await newTransaction({
+                            accountId: 81,
+                            toAccountId: 44,
+                            userId: 287,
+                            concept: 'anything',
+                            amount: 500
+                        });
+                        console.log(result);
+                    }}
+                    size="large"
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
+                    Press Me
+                </Button>
             </ButtonGroup>
         </div>
     );
-};
-
-export default Buttons;
+}
