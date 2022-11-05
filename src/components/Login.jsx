@@ -14,23 +14,29 @@ function Login() {
         e.preventDefault();
         const email = e.target.email.value.trim();
         const password = e.target.password.value.trim();
-
-
-
-
+        // eslint-disable-next-line no-unused-vars
         // eslint-disable-next-line no-undef
         axios
             .post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login', { email, password })
             .then(resp => {
-                Swal.fire({
-                    title: 'Exito!',
-                    text: 'Ingresando...',
-
-                });
+                <small>Ingresando</small>;
                 // eslint-disable-next-line no-unused-vars
+                console.log(resp.data)
                 const tokenReceived = resp.data.accessToken
                 localStorage.setItem('token', tokenReceived)
                 navigate('/Welcome')
+                axios.get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me', {
+                    headers: {
+                        Authorization: `Bearer ${tokenReceived}`
+                    }
+                }).then(response => {
+                    const nameUser = response.data.first_name;
+                    const idUser = response.data.id;
+                    localStorage.setItem('nameUser', nameUser)
+                    localStorage.setItem('idUser', idUser)
+                    console.log(response.data)
+                })
+
             })
             .catch(() => {
                 Swal.fire({
@@ -38,6 +44,7 @@ function Login() {
                     text: 'Datos Inválidos'
                 });
             });
+
 
 
     };
@@ -76,7 +83,7 @@ function Login() {
                                             Recordar
                                         </label>
                                     </div>
-                                    <a href="#!" className="text-body">¿Olvidaste tu contraseña?</a>
+                                    <a href="/ResetPassword" className="text-body">¿Olvidaste tu contraseña?</a>
                                 </div>
 
                                 <div className="text-center text-lg-start mt-4 pt-2">

@@ -2,15 +2,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+// eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
+import { uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 
 function CreateAccount() {
     const navigate = useNavigate();
+    // eslint-disable-next-line import/no-extraneous-dependencies, global-require, no-shadow
 
     const [data, setData] = useState({
-        name: '',
-        lasname: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         pswrepeat: ''
@@ -19,7 +21,7 @@ function CreateAccount() {
     const inputChange = (e) => {
         setData({
             ...data,
-            [e.target.name]: e.target.value.trim().toLowerCase()
+            [e.target.name]: e.target.value.trim()
         });
     };
 
@@ -30,9 +32,9 @@ function CreateAccount() {
 
         axios
             .post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users', {
-                name: data.name,
+                firts_name: data.first_name,
                 email: data.email,
-                lasname: data.lasname,
+                last_name: data.last_name,
                 password: data.password
             })
             .then((resp) => {
@@ -43,7 +45,7 @@ function CreateAccount() {
                 // eslint-disable-next-line no-unused-vars
                 const tokenReceived = resp.data.accessToken;
                 localStorage.setItem('token', tokenReceived);
-                navigate('/Login');
+                navigate('/');
             })
             .catch(() => {
                 Swal.fire({
@@ -70,8 +72,8 @@ function CreateAccount() {
                                     <input
                                         type="text"
                                         placeholder="Nombre"
-                                        name="name"
-                                        value={data.name}
+                                        name="first_name"
+                                        value={data.first_name}
                                         onChange={inputChange}
                                         required
                                         minLength="3"
@@ -100,9 +102,6 @@ function CreateAccount() {
                                         name="email"
                                         value={data.email}
                                         onChange={inputChange}
-                                        required
-                                        minLength="1"
-                                        maxLength="25"
                                         className="form-control form-control-lg"
                                     />
                                 </div>
@@ -158,7 +157,7 @@ function CreateAccount() {
                                     </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">
                                         ¿Ya tienes una cuenta?{' '}
-                                        <a href="/Login" className="link-danger">
+                                        <a href="/" className="link-danger">
                                             Inicia Sesión!
                                         </a>
                                     </p>
