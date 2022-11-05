@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable prettier/prettier */
 // eslint-disable-next-line import/no-duplicates
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line import/no-unresolved
 import Swal from 'sweetalert2';
@@ -14,28 +15,33 @@ function Login() {
         const email = e.target.email.value.trim();
         const password = e.target.password.value.trim();
 
-        if (email !== 'ingresarapi@hotmail.com' || password !== 'pokemones') {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Datos inválidos',
-                icon: 'error',
-                confirmButtonText: 'Ok'
 
+
+
+        // eslint-disable-next-line no-undef
+        axios
+            .post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login', { email, password })
+            .then(resp => {
+                Swal.fire({
+                    title: 'Exito!',
+                    text: 'Ingresando...',
+
+                });
+                // eslint-disable-next-line no-unused-vars
+                const tokenReceived = resp.data.accessToken
+                localStorage.setItem('token', tokenReceived)
+                navigate('/Welcome')
+            })
+            .catch(() => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Datos Inválidos'
+                });
             });
-        }
 
 
-
-        if (email === 'ingresarapi@hotmail.com' && password === 'pokemones') {
-            Swal.fire({
-                title: 'Exito!',
-                text: 'Ingresando...',
-                icon: 'exit',
-                confirmButtonText: 'OK'
-            });
-            navigate('/');
-        }
     };
+
 
     return (
         <>

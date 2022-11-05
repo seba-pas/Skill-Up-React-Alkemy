@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import Swal from 'sweetalert2';
 
@@ -9,6 +10,7 @@ function CreateAccount() {
 
     const [data, setData] = useState({
         name: '',
+        lasname: '',
         email: '',
         password: '',
         pswrepeat: ''
@@ -23,27 +25,33 @@ function CreateAccount() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const password1 = data.password.trim();
-        const password2 = data.pswrepeat.trim();
+        // const password1 = data.password.trim();
+        // const password2 = data.pswrepeat.trim();
 
-        if (password1 !== password2) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'La contraseña no coincide',
-                icon: 'error',
-                confirmButtonText: 'Ok'
+        axios
+            .post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users', {
+                name: data.name,
+                email: data.email,
+                lasname: data.lasname,
+                password: data.password
+            })
+            .then((resp) => {
+                Swal.fire({
+                    title: 'Exito!',
+                    text: 'Cuenta creada con exito'
+                });
+                // eslint-disable-next-line no-unused-vars
+                const tokenReceived = resp.data.accessToken;
+                localStorage.setItem('token', tokenReceived);
+                navigate('/Login');
+            })
+            .catch(() => {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'El email ingresado ya existe'
+                });
             });
-        } else {
-            Swal.fire({
-                title: 'Éxito!',
-                text: 'Cuenta Creada!',
-                icon: 'success'
-            });
-            navigate('/Login');
-        }
-        setData({});
     };
-
     return (
         <>
             <div className="contenedor-imagen">
@@ -64,6 +72,19 @@ function CreateAccount() {
                                         placeholder="Nombre"
                                         name="name"
                                         value={data.name}
+                                        onChange={inputChange}
+                                        required
+                                        minLength="3"
+                                        maxLength="12"
+                                        className="form-control form-control-lg"
+                                    />
+                                </div>
+                                <div className="form-outline mb-4">
+                                    <input
+                                        type="text"
+                                        placeholder="Apellido"
+                                        name="last_name"
+                                        value={data.last_name}
                                         onChange={inputChange}
                                         required
                                         minLength="3"
