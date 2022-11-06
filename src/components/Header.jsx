@@ -18,7 +18,7 @@ function Header(props) {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#">
-                    Barra de Navegación
+                    Barra de Navegación...
                 </a>
                 <div classNaame="collapse navbar-collapse" id="navbarNavDarkDropdown">
                     <ul className="navbar-nav">
@@ -34,12 +34,12 @@ function Header(props) {
                             <ul className="dropdown-menu dropdown-menu-dark">
                                 <li>
                                     <a className="dropdown-item" href="/ResetPassword">
-                                        Cambiar Contraseña
+                                        Change password
                                     </a>
                                 </li>
                                 <li>
                                     <button className="dropdown-item" onClick={clearStorage}>
-                                        Cerrar Sesión
+                                        Sign off
                                     </button>
                                 </li>
                             </ul>

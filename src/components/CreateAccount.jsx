@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 // eslint-disable-next-line import/no-extraneous-dependencies, no-unused-vars
-import { uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
 
 function CreateAccount() {
@@ -57,9 +56,8 @@ function CreateAccount() {
     return (
         <>
             <div className="contenedor-imagen">
-                <h1 className="text-center">BIENVENIDO</h1>
+                <h1 className="text-center">Welcome to transfer cash</h1>
                 <br />
-                <h3>Ingrese sus datos</h3>
                 <br />
                 <img alt="Logo-principal" className="imagen" />
             </div>
@@ -71,7 +69,7 @@ function CreateAccount() {
                                 <div className="form-outline mb-4">
                                     <input
                                         type="text"
-                                        placeholder="Nombre"
+                                        placeholder="First name"
                                         name="first_name"
                                         value={data.first_name}
                                         onChange={inputChange}
@@ -84,7 +82,7 @@ function CreateAccount() {
                                 <div className="form-outline mb-4">
                                     <input
                                         type="text"
-                                        placeholder="Apellido"
+                                        placeholder="Last name"
                                         name="last_name"
                                         value={data.last_name}
                                         onChange={inputChange}
@@ -109,7 +107,7 @@ function CreateAccount() {
                                 <div className="form-outline mb-3">
                                     <input
                                         type="password"
-                                        placeholder="Contraseña"
+                                        placeholder="Password"
                                         name="password"
                                         value={data.password}
                                         required
@@ -123,7 +121,7 @@ function CreateAccount() {
                                 <div className="form-outline mb-3">
                                     <input
                                         type="password"
-                                        placeholder="Repetir Contraseña"
+                                        placeholder="Repeat password"
                                         name="pswrepeat"
                                         value={data.pswrepeat}
                                         required
@@ -142,23 +140,17 @@ function CreateAccount() {
                                             value=""
                                             id="form2Example3"
                                         />
-                                        <label className="form-check-label" htmlFor="form2Example3">
-                                            Recordar
-                                        </label>
                                     </div>
-                                    <a href="#!" className="text-body">
-                                        ¿Olvidaste tu contraseña?
-                                    </a>
                                 </div>
 
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" className="btn btn-primary btn-lg">
-                                        Crear Cuenta
+                                        Create account
                                     </button>
                                     <p className="small fw-bold mt-2 pt-1 mb-0">
-                                        ¿Ya tienes una cuenta?{' '}
+                                        ¿You have an account?{' '}
                                         <a href="/" className="link-danger">
-                                            Inicia Sesión!
+                                            Sig in here!
                                         </a>
                                     </p>
                                 </div>

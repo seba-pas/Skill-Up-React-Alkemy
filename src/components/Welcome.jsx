@@ -15,7 +15,7 @@ function Welcome() {
     return (
         <div>
             <Header nameUser={nameUser} />
-            <h2>Bienvenido</h2>
+            <h1>Welcome</h1>
         </div>
     );
 }

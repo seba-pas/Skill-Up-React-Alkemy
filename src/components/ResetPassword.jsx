@@ -1,10 +1,11 @@
+/* eslint-disable object-shorthand */
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 function ResetPassword() {
-    const idUser = localStorage.getItem('idUser');
-    console.log(idUser);
+    const userId = localStorage.getItem('idUser');
+    console.log(userId);
     const navigate = useNavigate();
     const submitHandler = (e) => {
         e.preventDefault();
@@ -16,7 +17,7 @@ function ResetPassword() {
                 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users/resetPassword/',
                 // eslint-disable-next-line no-undef
                 {
-                    id: idUser
+                    userId
                 }
             )
             .then(() => {
