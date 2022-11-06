@@ -6,12 +6,13 @@ import AuthGuard from './AuthGuard';
 import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
 import { PRIVATE, PUBLIC } from './PathUrl';
+import ButtonAppBar from '../components/appbar/Appbar';
 
 const Signin = lazy(() => import('../pages/Signin/Signin'));
 
 const Dashboard = lazy(() => import('../pages/Private/Home/Home'));
 const PrivateLayout = lazy(() => import('../layout/PrivateLayout/PrivateLayout'));
-const TopUpBalance = lazy(() => import('../pages/Private/carga saldo/CargaSaldo'));
+const TopUpBalance = lazy(() => import('../pages/Private/TopUpBalance/TopUpBalance'));
 const Movements = lazy(() => import('../pages/Private/transacciones/Transacciones'));
 const Profile = lazy(() => import('../pages/Private/Perfil/Perfil'));
 const Bills = lazy(() => import('../pages/Private/Gastos/Gastos'));
@@ -22,6 +23,8 @@ function Router() {
         <Suspense fallback={<h3>loading</h3>}>
             <BrowserRouter>
                 <RoutesWithNotFound>
+                    <Route path="/button" element={<ButtonAppBar />} />
+
                     <Route path="/" element={<Navigate to={PRIVATE.home} />} />
 
                     <Route path={PUBLIC.login} element={<Signin />} />

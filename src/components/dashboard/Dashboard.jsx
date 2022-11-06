@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './dashboard.css';
 import Buttons from '../buttons/Buttons';
 import ButtonAppBar from '../appbar/Appbar';
-import OutlinedCard from '../saldo/Saldo';
+// import OutlinedCard from '../saldo/Saldo';
 import Saldo2 from '../saldo/Saldo2';
 import AvatarUser from '../user/AvatarUser';
-import Transacciones from '../transacciones/Transacciones';
+// import Transacciones from '../transacciones/Transacciones';
+
 {
     /* Carga de saldo
 3. Gastos
@@ -18,16 +19,14 @@ export default function Dashboard() {
     const [saldo, setSaldo] = useState(0);
 
     return (
-        <div className="general_container" style={{ background: 'transparent', height: '100vh' }}>
-            <div className="circle"></div>
+        <div className="general_container">
             <ButtonAppBar />
 
-            <div style={{ marginTop: '100px' }}>
+            <div style={{ marginTop: '20px' }}>
                 <AvatarUser />
 
                 <Saldo2 />
             </div>
-            <div className="circle2"></div>
 
             <div>
                 <Buttons />

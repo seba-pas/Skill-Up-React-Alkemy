@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components';
 // eslint-disable-next-line import/prefer-default-export
 export const GlobalStyle = createGlobalStyle`
     // global styles
-
     .custom-input {
         margin: 0 0 15px;
         transition: ${({ theme }) => theme.transition.default};
@@ -29,11 +28,13 @@ export const GlobalStyle = createGlobalStyle`
             &:focus {
                 border-color: ${({ theme }) => theme.colors.primary};
             }
-
         }
-
         &:last-child {
             margin: 0;
         }
+    }
+    a{
+        text-decoration: none;
+        color: white;
     }
 `;
