@@ -132,17 +132,6 @@ function CreateAccount() {
                                     />
                                 </div>
 
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="form-check mb-0">
-                                        <input
-                                            className="form-check-input me-2"
-                                            type="checkbox"
-                                            value=""
-                                            id="form2Example3"
-                                        />
-                                    </div>
-                                </div>
-
                                 <div className="text-center text-lg-start mt-4 pt-2">
                                     <button type="submit" className="btn btn-primary btn-lg">
                                         Create account

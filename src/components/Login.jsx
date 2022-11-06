@@ -78,12 +78,6 @@ function Login() {
 
                                 <div className="d-flex justify-content-between align-items-center">
 
-                                    <div className="form-check mb-0">
-                                        <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                                        <label className="form-check-label" >
-                                            Remember
-                                        </label>
-                                    </div>
                                     <a href="/ResetPassword" className="text-body">¿Did you forget your password?</a>
                                 </div>
 
