@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
-function Welcome() {
+function Home() {
     const navigate = useNavigate();
     const nameUser = localStorage.getItem('nameUser');
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token == null) {
+        if (token === null) {
             navigate('/');
         }
     }, []);
@@ -20,4 +20,4 @@ function Welcome() {
     );
 }
 
-export default Welcome;
+export default Home;

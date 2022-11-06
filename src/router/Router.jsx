@@ -3,8 +3,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import RoutesWithNotFound from './RoutesWithNotFound';
 import Login from '../components/Login';
 import CreateAccount from '../components/CreateAccount';
-import Welcome from '../components/Welcome';
-import ResetPassword from '../components/ResetPassword';
+import Home from '../components/Home';
 
 function Router() {
     return (
@@ -12,9 +11,8 @@ function Router() {
             <BrowserRouter>
                 <RoutesWithNotFound>
                     <Route path="/" element={<Login />} />
-                    <Route path="/Welcome" element={<Welcome />} />
+                    <Route path="/Home" element={<Home />} />
                     <Route path="/CreateAccount" element={<CreateAccount />} />
-                    <Route path="/ResetPassword" element={<ResetPassword />} />
                 </RoutesWithNotFound>
             </BrowserRouter>
         </Suspense>

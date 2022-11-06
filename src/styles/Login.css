@@ -21,3 +21,23 @@
     padding: 0;
     margin: 0;
 }
+
+input:focus,
+input[type]:focus {
+    border-color: #769bc5;
+    box-shadow: 0 1px 1px #83b6be inset, 0 0 8px #83b6be;
+    outline: 0 none;
+}
+form {
+    width: 700px;
+    margin: 50px 800px 50px 800px;
+    position: absolute;
+}
+
+.form-outline {
+    width: 350px;
+}
+
+.text-center {
+    margin-top: 150px;
+}
