@@ -1,9 +1,9 @@
 import { AppBar, Box, Chip, Toolbar } from '@mui/material';
-import './Footer.css';
+import { ContentFooter } from './Footer.styles.js';
 
 export default function Footer() {
     return (
-        <footer>
+        <ContentFooter>
             <Box>
                 <AppBar
                     position="fixed"
@@ -17,6 +17,6 @@ export default function Footer() {
                     </Toolbar>
                 </AppBar>
             </Box>
-        </footer>
+        </ContentFooter>
     );
 }

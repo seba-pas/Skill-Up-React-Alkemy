@@ -1,16 +1,20 @@
-import { Box, Container } from '@mui/material';
 import React from 'react';
+import { ContentTopUpBalance } from './TopUpBalance.style';
 
-function CargaSaldo() {
+function TopUpBalance() {
     return (
-        <Container>
-            <Box>
-                <span>
-                    <h3>Saldo Actual: </h3>$0
-                </span>
-            </Box>
-        </Container>
+        <ContentTopUpBalance>
+            <span>
+                <h3>Saldo Actual: </h3>$0
+            </span>
+            <span>
+                <h3>Cargar Saldo:</h3>
+            </span>
+            <form action="">
+                <input type="number" />
+            </form>
+        </ContentTopUpBalance>
     );
 }
 
-export default CargaSaldo;
+export default TopUpBalance;

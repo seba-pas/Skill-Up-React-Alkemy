@@ -4,9 +4,10 @@ export const PUBLIC = {
 
 export const PRIVATE = {
     home: '/app/home',
-    cargarSaldo: '/app/top-up-balance',
-    movimientos: '/app/movements',
-    perfil: '/app/profile',
-    gastos: '/app/bills',
-    contacto: '/app/contact'
+    topUpBalance: '/app/top-up-balance',
+    balance: '/app/balance',
+    profile: '/app/profile',
+    bills: '/app/bills',
+    contact: '/app/contact',
+    transactions: '/app/transactions'
 };

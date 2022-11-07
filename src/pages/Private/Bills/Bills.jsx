@@ -1,5 +1,5 @@
-function Gastos() {
+function Bills() {
     return <div>Seccion de gastos</div>;
 }
 
-export default Gastos;
+export default Bills;

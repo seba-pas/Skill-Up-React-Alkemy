@@ -1,7 +1,7 @@
 import { AlertTitle, Button, Container, Fade } from '@mui/material';
 import { Link } from 'react-router-dom';
 import NotFoundBack from '../../assets/img/404-error.webp';
-import { ContentAdornos } from '../../layout/PrivateLayout/Adornos/Adornos.style';
+import Adornos from '../../layout/PrivateLayout/Adornos/Adornos';
 import { PRIVATE } from '../../router/PathUrl';
 import { ContentNotFound, LinkNotFound } from './NotFound.styles';
 
@@ -9,7 +9,7 @@ export default function NotfoundDesktop() {
     return (
         <ContentNotFound className="general_container">
             <div style={{ marginTop: '100px' }} />
-            <ContentAdornos>
+            <Adornos>
                 <Container>
                     <Fade in>
                         <img src={NotFoundBack} alt="Imagen de página no encontrada" />
@@ -27,7 +27,7 @@ export default function NotfoundDesktop() {
                         </LinkNotFound>
                     </Fade>
                 </Container>
-            </ContentAdornos>
+            </Adornos>
         </ContentNotFound>
     );
 }

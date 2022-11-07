@@ -33,6 +33,9 @@ export const ContentAppBarMobile = styled.div`
 `;
 
 export const ContentAppBar = styled.div`
+    .navBarDesktop {
+        z-index: 100;
+    }
     @media screen and (max-width: 767px) {
         display: none;
     }

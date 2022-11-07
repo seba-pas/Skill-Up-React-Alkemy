@@ -21,9 +21,7 @@ export const ContentHome = styled.section`
         justify-content: center;
         align-content: center;
         margin-top: 10%;
-
         color: white;
-
         font-size: 40px;
     }
 

@@ -7,7 +7,6 @@ export const ContentAdornos = styled.section`
         top: 20px;
         width: 300px;
         height: 300px;
-        position: fixed;
         border-radius: 50%;
         background: rgba(240, 226, 175, 0.29);
     }
@@ -17,7 +16,6 @@ export const ContentAdornos = styled.section`
         top: 370px;
         width: 300px;
         height: 300px;
-        position: fixed;
         border-radius: 50%;
         background: rgba(47, 203, 252, 0.3);
     }
