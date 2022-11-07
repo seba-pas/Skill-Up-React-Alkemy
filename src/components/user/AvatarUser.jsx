@@ -1,7 +1,6 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AVT from '../../assets/img/avt.jpg';
-import Avatar from '@mui/material/Avatar';
 import './avatar.css';
 
 export default function AvatarUser() {
