@@ -1,7 +1,7 @@
 // hooks
 import { Provider } from 'react-redux';
 // store
-import store from './store/store';
+import { store } from './store/store';
 // components
 import Router from './router/Router';
 import GlobalTheme from './styles/Theme';

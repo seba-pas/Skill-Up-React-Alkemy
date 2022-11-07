@@ -1,9 +1,9 @@
 import React from 'react';
+import { Avatar } from '@mui/material';
 import AVT from '../../assets/img/avt.jpg';
-import Avatar from '@mui/material/Avatar';
 import './avatar.css';
 
-const AvatarUser = () => {
+export default function AvatarUser() {
     return (
         <div className="head_container">
             <div className="avatar_container">
@@ -28,6 +28,4 @@ const AvatarUser = () => {
             </div>
         </div>
     );
-};
-
-export default AvatarUser;
+}
