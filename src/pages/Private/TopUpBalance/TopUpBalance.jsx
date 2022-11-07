@@ -1,18 +1,20 @@
+import { FormControl, Input } from '@mui/material';
 import React from 'react';
+import BackButton from '../../../components/buttons/BackButton';
 import { ContentTopUpBalance } from './TopUpBalance.style';
 
 function TopUpBalance() {
     return (
         <ContentTopUpBalance>
-            <span>
-                <h3>Saldo Actual: </h3>$0
-            </span>
+            <div className="backButtonContainer">
+                <BackButton />
+            </div>
             <span>
                 <h3>Cargar Saldo:</h3>
             </span>
-            <form action="">
-                <input type="number" />
-            </form>
+            <FormControl>
+                <Input />
+            </FormControl>
         </ContentTopUpBalance>
     );
 }
