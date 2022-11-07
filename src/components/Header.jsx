@@ -20,7 +20,7 @@ function Header(props) {
                 <a className="navbar-brand" href="#">
                     Barra de Navegación...
                 </a>
-                <div classNaame="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <div className="collapse navbar-collapse" id="navbarNavDarkDropdown">
                     <ul className="navbar-nav">
                         <li className="nav-item dropdown">
                             <a

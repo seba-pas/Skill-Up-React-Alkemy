@@ -1,19 +1,30 @@
-import { FormControl, Input } from '@mui/material';
+import { FormControl, Input, InputAdornment, TextField } from '@mui/material';
 import React from 'react';
+import Swal from 'sweetalert2;';
 import BackButton from '../../../components/buttons/BackButton';
 import { ContentTopUpBalance } from './TopUpBalance.style';
 
 function TopUpBalance() {
+    const validateAmount = (e) => {
+        e.preventDefault();
+        const amount = e.target.value;
+        console.log(amount);
+        amount < 0 && Swal.fire('algo');
+    };
     return (
         <ContentTopUpBalance>
             <div className="backButtonContainer">
                 <BackButton />
             </div>
-            <span>
-                <h3>Cargar Saldo:</h3>
-            </span>
-            <FormControl>
-                <Input />
+            <FormControl className="topUpForm">
+                <h2>Cargar Saldo:</h2>
+                <Input
+                    startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                    type="number"
+                    name="amount"
+                    onChange={validateAmount}
+                />
+                <TextField placeholder="Concepto" />
             </FormControl>
         </ContentTopUpBalance>
     );

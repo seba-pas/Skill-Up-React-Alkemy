@@ -1,5 +1,5 @@
-import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { ContentBackButton } from './BackButton.styles';
 
 export default function BackButton() {
     const navigate = useNavigate();
@@ -7,13 +7,8 @@ export default function BackButton() {
         navigate(-1);
     };
     return (
-        <Button onClick={handleBack}>
-            <svg
-                width="55"
-                height="40"
-                viewBox="0 0 11 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+        <ContentBackButton onClick={handleBack}>
+            <svg viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -21,6 +16,6 @@ export default function BackButton() {
                     fill="#858585"
                 />
             </svg>
-        </Button>
+        </ContentBackButton>
     );
 }

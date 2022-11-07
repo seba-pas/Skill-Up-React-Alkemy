@@ -12,6 +12,9 @@ export const ContentTopUpBalance = styled.section`
         top: 10px;
         left: 0;
     }
+    .topUpForm {
+        gap: 3rem;
+    }
     @media screen and (min-width: 768px) {
         .backButtonContainer {
             top: 80%;

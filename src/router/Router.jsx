@@ -7,6 +7,10 @@ import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
 import { PRIVATE, PUBLIC } from './PathUrl';
 import ButtonAppBar from '../components/appbar/Appbar';
+import Login from '../components/Login';
+import CreateAccount from '../components/CreateAccount';
+import Home from '../components/Home';
+
 const Signin = lazy(() => import('../pages/Signin/Signin'));
 const Dashboard = lazy(() => import('../pages/Private/Home/Home'));
 const PrivateLayout = lazy(() => import('../layout/PrivateLayout/PrivateLayout'));
@@ -17,10 +21,6 @@ const Profile = lazy(() => import('../pages/Private/Profile/Profile'));
 const Bills = lazy(() => import('../pages/Private/Bills/Bills'));
 const Contact = lazy(() => import('../pages/Private/contact/Contact'));
 const Balance = lazy(() => import('../pages/Private/Balance/Balance'));
-import Login from '../components/Login';
-import CreateAccount from '../components/CreateAccount';
-import Home from '../components/Home';
-
 
 function Router() {
     return (
