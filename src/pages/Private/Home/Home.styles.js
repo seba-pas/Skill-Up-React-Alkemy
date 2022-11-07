@@ -1,32 +1,7 @@
 import styled from 'styled-components';
 
 export const ContentHome = styled.section`
-    .circle {
-        position: absolute;
-        right: -180px;
-        top: -180px;
-        width: 400px;
-        height: 400px;
-        position: fixed;
-
-        border-radius: 50%;
-        z-index: -1;
-
-        background: #f8e192;
-    }
-    .circle2 {
-        position: absolute;
-        left: -150px;
-        top: 300px;
-        width: 400px;
-        height: 400px;
-        position: fixed;
-
-        border-radius: 50%;
-        z-index: -1;
-
-        background: rgba(47, 203, 252, 0.3);
-    }
+    z-index: 100;
     .saldo_container {
         margin-top: 40px;
         display: flex;
@@ -46,9 +21,7 @@ export const ContentHome = styled.section`
         justify-content: center;
         align-content: center;
         margin-top: 10%;
-
         color: white;
-
         font-size: 40px;
     }
 

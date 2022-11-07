@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
+import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import List from '@mui/material/List';
@@ -12,10 +12,14 @@ import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+import { PRIVATE } from '../../router/PathUrl';
+import { ContentAppBar } from './Appbar.style';
+
 export default function ButtonAppBar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     return (
-        <div style={{ marginBottom: '40px' }}>
+        <ContentAppBar className="navBarDesktop">
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static" sx={{ backgroundColor: '#2660A4' }}>
                     <Toolbar>
@@ -29,12 +33,15 @@ export default function ButtonAppBar() {
                             <MenuIcon />
                         </IconButton>
                         <Typography
-                            style={{ marginLeft: '-40px' }}
+                            style={{ padding: '1px' }}
                             variant="h4"
                             component="div"
                             sx={{ flexGrow: 1 }}>
-                            Alkemy Wallet
+                            <Link to={PRIVATE.home}>
+                                <Button sx={{ color: 'white' }}>Alkemy Wallet</Button>
+                            </Link>
                         </Typography>
+
                         <Drawer
                             style={{ height: '60vh', width: '50vw' }}
                             open={isDrawerOpen}
@@ -48,32 +55,44 @@ export default function ButtonAppBar() {
                                     color: 'white'
                                 }}>
                                 <ListItem button>
-                                    <ListItemText primary="Home" />
+                                    <Link to={PRIVATE.home}>
+                                        <ListItemText primary="Home" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Mi Perfil" />
+                                    <Link to={PRIVATE.perfil}>
+                                        <ListItemText primary="Mi perfil" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Gastos" />
+                                    <Link to={PRIVATE.gastos}>
+                                        <ListItemText primary="Gastos" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Movimientos" />
+                                    <Link to={PRIVATE.movimientos}>
+                                        <ListItemText primary="Movimientos" />
+                                    </Link>
                                 </ListItem>
                                 <ListItem button>
-                                    <ListItemText primary="Agregar Saldo" />
+                                    <Link to={PRIVATE.cargarSaldo}>
+                                        <ListItemText primary="Agregar Saldo" />
+                                    </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <ListItemText primary="Contactanos" />
+                                    <Link to={PRIVATE.contacto}>
+                                        <ListItemText primary="Contáctanos" />
+                                    </Link>
                                 </ListItem>
                             </List>
                         </Drawer>
                     </Toolbar>
                 </AppBar>
             </Box>
-        </div>
+        </ContentAppBar>
     );
 }

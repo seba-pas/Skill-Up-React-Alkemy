@@ -1,7 +1,7 @@
 import React from 'react';
-import './transacciones.css';
+import { ContentTransactions } from './transacctions.style';
 
-const Transacciones = () => {
+function Transacciones() {
     const data = [
         {
             id: 1,
@@ -23,7 +23,8 @@ const Transacciones = () => {
         }
     ];
     return (
-        <div className='transcontainer'>
+        <ContentTransactions className="transcontainer">
+            <h2>Transactions</h2>
             {data.map((e) => {
                 return (
                     <div className="transcard" key={e.id}>
@@ -33,8 +34,8 @@ const Transacciones = () => {
                     </div>
                 );
             })}
-        </div>
+        </ContentTransactions>
     );
-};
+}
 
 export default Transacciones;

@@ -1,15 +1,17 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import { useNavigate } from 'react-router-dom';
 import { useNewTransactionMutation } from '../../store/services/dataApi';
 // import Stack from '@mui/material/Stack';
+import { PRIVATE } from '../../router/PathUrl';
 
-export default function Buttons() {
+function Buttons() {
     const [newTransaction] = useNewTransactionMutation();
-
-    const navigation = () => {
-        // //aca va la funcion para navehgar
-        console.log('navegando para algun lado ');
+    const navigate = useNavigate();
+    const navigation = (url) => {
+        // aca va la funcion para navehgar
+        navigate(url);
     };
 
     return (
@@ -17,23 +19,25 @@ export default function Buttons() {
             {' '}
             <ButtonGroup variant="contained" aria-label="primary button group">
                 <Button
-                    onClick={() => navigation()}
+                    onClick={() => navigation(PRIVATE.topUpBalance)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Cargar Saldo
                 </Button>
                 <Button
-                    onClick={() => navigation()}
+                    onClick={() => navigation(PRIVATE.bills)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Gastos
                 </Button>
                 <Button
-                    onClick={() => navigation()}
+                    onClick={() => navigation(PRIVATE.transactions)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Movimientos
                 </Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" aria-label="primary button group">
                 <Button
                     onClick={async () => {
                         const result = await newTransaction({
@@ -46,10 +50,15 @@ export default function Buttons() {
                         console.log(result);
                     }}
                     size="large"
-                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
+                    sx={{
+                        backgroundColor: '#133fdb',
+                        borderColor: 'transparent'
+                    }}>
                     Press Me
                 </Button>
             </ButtonGroup>
         </div>
     );
 }
+
+export default Buttons;
