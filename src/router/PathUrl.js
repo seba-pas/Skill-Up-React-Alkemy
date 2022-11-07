@@ -3,5 +3,5 @@ export const PUBLIC = {
 };
 
 export const PRIVATE = {
-    home: '/app/home'
+    home: 'inicio'
 };

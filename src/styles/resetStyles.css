@@ -8,6 +8,9 @@ body {
 
 html {
     font-size: 62.5%;
+}
+
+* {
     box-sizing: border-box;
 }
 
@@ -17,4 +20,11 @@ code {
 
 input {
     outline: none;
+}
+
+button {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
 }

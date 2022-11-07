@@ -4,36 +4,45 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
     // global styles
 
-    .custom-input {
-        margin: 0 0 15px;
+    /* class */
+    .d-flex {
+        display: flex;
+    }
+    .d-flex.center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .no-scroll {
+        overflow: hidden;
+        max-height: 100vh;
+    }
+
+    /* components */
+    .btn {
+        border-radius: ${({ theme }) => theme.rounded.s};
+        text-align: center;
+        color: ${({ theme }) => theme.c_text.white};
+        font-weight: 600;
+        width: 235px;
+        margin: 0 auto;
+        line-height: 40px;
+        display: block;
+        text-transform: uppercase;
         transition: ${({ theme }) => theme.transition.default};
-        .label {
-            display: block;
-            margin: 0 0 7px 5px;
-            color: ${({ theme }) => theme.c_text.gray};
-            font-size: 1.4rem;
-            transition: inherit;
-            &:is(.label .input:focus) {
-                color: ${({ theme }) => theme.colors.primary};
-            }
-        }
-        .input {
-            border: 1px solid ${({ theme }) => theme.c_text.gray};
-            padding: ${({ theme }) => theme.padding.input};
-            background: transparent;
-            display: block;
-            width: 235px;
-            transition: inherit;
-            border-radius: ${({ theme }) => theme.rounded.s};
-            
-            &:focus {
-                border-color: ${({ theme }) => theme.colors.primary};
-            }
 
+        &:hover {
+            background: ${({ theme }) => theme.colors.h_primary};
         }
-
-        &:last-child {
-            margin: 0;
+        &:disabled {
+            background: ${({ theme }) => theme.c_text.gray};
         }
     }
+
+    .primary {
+        background: ${({ theme }) => theme.colors.primary};
+    }
+
+
+
 `;

@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import Stack from '@mui/material/Stack';
 
-const Buttons = () => {
+function Buttons() {
     const navigation = () => {
-        //aca va la funcion para navehgar
+        // aca va la funcion para navehgar
         console.log('navegando para algun lado ');
     };
 
@@ -34,6 +33,6 @@ const Buttons = () => {
             </ButtonGroup>
         </div>
     );
-};
+}
 
 export default Buttons;

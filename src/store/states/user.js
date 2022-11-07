@@ -3,7 +3,7 @@ import { clearLocalStorage, persistLocalStorage } from '../../utilities/localSto
 
 export const EmptyUserState = {
     name: '',
-    id_user: '12312',
+    id_user: 'qwdqd',
     rol: '12312',
     token: '123'
 };
