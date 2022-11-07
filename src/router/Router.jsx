@@ -7,17 +7,20 @@ import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
 import { PRIVATE, PUBLIC } from './PathUrl';
 import ButtonAppBar from '../components/appbar/Appbar';
-
 const Signin = lazy(() => import('../pages/Signin/Signin'));
-
 const Dashboard = lazy(() => import('../pages/Private/Home/Home'));
 const PrivateLayout = lazy(() => import('../layout/PrivateLayout/PrivateLayout'));
+
 const TopUpBalance = lazy(() => import('../pages/Private/TopUpBalance/TopUpBalance'));
 const Transactions = lazy(() => import('../pages/Private/Transactions/Transactions'));
 const Profile = lazy(() => import('../pages/Private/Profile/Profile'));
 const Bills = lazy(() => import('../pages/Private/Bills/Bills'));
 const Contact = lazy(() => import('../pages/Private/contact/Contact'));
 const Balance = lazy(() => import('../pages/Private/Balance/Balance'));
+import Login from '../components/Login';
+import CreateAccount from '../components/CreateAccount';
+import Home from '../components/Home';
+
 
 function Router() {
     return (
@@ -41,6 +44,9 @@ function Router() {
                             <Route path={PRIVATE.contact} element={<Contact />} />
                         </Route>
                     </Route>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/Home" element={<Home />} />
+                    <Route path="/CreateAccount" element={<CreateAccount />} />
                 </RoutesWithNotFound>
             </BrowserRouter>
         </Suspense>

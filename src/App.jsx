@@ -1,4 +1,6 @@
 // hooks
+/* eslint-disable react/jsx-no-undef */
+import './App.css';
 import { Provider } from 'react-redux';
 // store
 import { store } from './store/store';
