@@ -24,7 +24,7 @@ export const dataApi = createApi({
             query: (id) => `/accounts/${id}`
         }),
         getTransactions: builder.query({
-            query: () => '/transactions'
+            query: (url) => url || '/transactions'
         }),
         getTransaction: builder.query({
             query: (id) => `/transactions/${id}`

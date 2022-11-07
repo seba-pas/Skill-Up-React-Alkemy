@@ -37,4 +37,3 @@ const Transacciones = () => {
     );
 };
 
-export default Transacciones;
