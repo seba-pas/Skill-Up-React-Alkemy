@@ -76,5 +76,6 @@ export const ContentTransactions = styled.section`
     .newTransactionForm {
         display: flex;
         flex-direction: column;
+        margin-bottom: 5rem;
     }
 `;

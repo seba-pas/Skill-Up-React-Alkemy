@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-// import { useNewTransactionMutation } from '../../store/services/dataApi';
-// import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router-dom';
+import { useNewTransactionMutation } from '../../store/services/dataApi';
+// import Stack from '@mui/material/Stack';
 import { PRIVATE } from '../../router/PathUrl';
 
 function Buttons() {
@@ -19,23 +19,25 @@ function Buttons() {
             {' '}
             <ButtonGroup variant="contained" aria-label="primary button group">
                 <Button
-                    onClick={() => navigation(PRIVATE.cargarSaldo)}
+                    onClick={() => navigation(PRIVATE.topUpBalance)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Cargar Saldo
                 </Button>
                 <Button
-                    onClick={() => navigation(PRIVATE.gastos)}
+                    onClick={() => navigation(PRIVATE.bills)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Gastos
                 </Button>
                 <Button
-                    onClick={() => navigation(PRIVATE.movimientos)}
+                    onClick={() => navigation(PRIVATE.transactions)}
                     size="large"
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
                     Movimientos
                 </Button>
+            </ButtonGroup>
+            <ButtonGroup variant="contained" aria-label="primary button group">
                 <Button
                     onClick={async () => {
                         const result = await newTransaction({
@@ -48,7 +50,10 @@ function Buttons() {
                         console.log(result);
                     }}
                     size="large"
-                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
+                    sx={{
+                        backgroundColor: '#133fdb',
+                        borderColor: 'transparent'
+                    }}>
                     Press Me
                 </Button>
             </ButtonGroup>
