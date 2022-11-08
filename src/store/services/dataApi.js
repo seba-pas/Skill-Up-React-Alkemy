@@ -45,6 +45,7 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
+                    // check this line
                     type: 'topup' || 'payment',
                     concept,
                     amount
@@ -56,6 +57,7 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
+                    // check this line
                     type: 'topup' || 'payment',
                     concept,
                     amount: amount * -1
