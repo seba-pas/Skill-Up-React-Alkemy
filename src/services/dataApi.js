@@ -6,7 +6,7 @@ export const dataApi = createApi({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/',
         prepareHeaders: (headers) => {
             const token =
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6Mjg3LCJyb2xlSWQiOjF9LCJpYXQiOjE2Njc4MzUyNjMsImV4cCI6MTY2NzkyMTY2M30.Om9qAKupHqndi9wlDbGWWtD2JUIKX3veO0xk5DrADBc';
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6Mjg3LCJyb2xlSWQiOjF9LCJpYXQiOjE2Njc5MzI1MjEsImV4cCI6MTY2ODAxODkyMX0.LvtNAcGG1DWWPAjxkOr9JdMvfNKlBh28jsPPq8FscUI';
             // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6Mjg3LCJyb2xlSWQiOjF9LCJpYXQiOjE2Njc2MDY4NjgsImV4cCI6MTY2NzY5MzI2OH0.x5cfUC0LyhC5Cz0qMoSuSi_Uf9M4DVHPzEfLo-XDAsg'; este token devolvia error ahi puse arriba el que corresponde al usuario admin@grupo3.com contraseña 123qwe.
 
             headers.set('authorization', `Bearer ${token}`);

@@ -1,18 +1,13 @@
-import { Button, FormControl, Input, InputAdornment, TextField } from '@mui/material';
+// hooks
 import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
-import { ContentTopUpBalance } from './TopUpBalance.style';
-
-import BackButton from '../../../components/Buttons/BackButton';
+import { Button, FormControl, Input, InputAdornment, TextField } from '@mui/material';
+import Swal from 'sweetalert2';
 import { useGetMeQuery } from '../../../services/dataApi';
-
-// let { id, amount, concept } = {
-//     amount: '',
-//     id: '',
-//     concept: ''
-// };
+// components
+import BackButton from '../../../components/Buttons/BackButton';
+// style
+import { ContentTopUpBalance } from './TopUpBalance.style';
 
 function TopUpBalance() {
     // const [depositCash] = useDepositCashMutation;
