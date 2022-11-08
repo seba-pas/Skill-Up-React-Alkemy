@@ -29,9 +29,8 @@ input[type]:focus {
     outline: 0 none;
 }
 form {
-    width: 700px;
-    margin: 50px 800px 50px 800px;
-    position: absolute;
+    width: 300px;
+    margin: 50px auto 50px;
 }
 
 .form-outline {

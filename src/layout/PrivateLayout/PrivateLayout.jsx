@@ -1,9 +1,9 @@
 // hooks
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import ButtonAppBar from '../../components/appbar/Appbar';
-import AppBarMobile from '../../components/appbar/AppBarMobile';
-import Footer from '../../components/footer/Footer';
+import ButtonAppBar from '../../components/Appbar/Appbar';
+import AppBarMobile from '../../components/Appbar/AppBarMobile';
+import Footer from '../../components/Footer/Footer';
 // styles
 import { ContentPrivateLayout } from './Private.styles';
 
@@ -12,8 +12,8 @@ function PrivateLayout() {
         <ContentPrivateLayout>
             <ButtonAppBar />
             <Outlet />
-            <AppBarMobile />
             <Footer />
+            <AppBarMobile />
         </ContentPrivateLayout>
     );
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
 export const ContentPrivateLayout = styled.div`
-    background: ${({ theme }) => theme.colors.white};
+    min-height: 80vh;
 `;
