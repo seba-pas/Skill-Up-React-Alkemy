@@ -25,7 +25,7 @@ export const ContentTopUpBalance = styled.section`
     }
     @media screen and (min-width: 768px) {
         .backButtonContainer {
-            top: 80%;
+            top: 50%;
             left: 47%;
         }
     }
