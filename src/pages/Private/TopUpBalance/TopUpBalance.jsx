@@ -18,6 +18,7 @@ function TopUpBalance() {
     // const [depositCash] = useDepositCashMutation;
     const getMeQuery = useGetMeQuery();
     const [amount, setAmount] = useState();
+    const [concept, setConcept] = useState();
     const [data, setData] = useState();
     useEffect(() => {
         const temp = getMeQuery.data;
@@ -28,25 +29,14 @@ function TopUpBalance() {
             Swal.fire('', 'Ingrese un valor mayor que 0', 'warning');
         }
     }, [amount]);
-    // const validateAmount = (e) => {
-    //     e.preventDefault();
-    //     const tempAmount = e.target.value;
-    //     if (tempAmount < 0) {
-    //         Swal.fire('Ingrese un valor mayor que 0');
-    //         return false;
-    //     }
-    //     setAmount(tempAmount);
-    //     return true;
-    // };
+
     const handleClick = () => {
         console.log(data);
+        console.log(amount);
+        console.log(concept);
         // logica para ingresar el id de cuenta y hacer el deposito
         // depositCash(id, concept, amount);
     };
-    // const HandleConcept = (e) => {
-    //     concept = e.target.value;
-    //     return concept;
-    // };
     return (
         <ContentTopUpBalance>
             <div className="backButtonContainer">
@@ -60,7 +50,7 @@ function TopUpBalance() {
                     name="amount"
                     onChange={(e) => setAmount(e.target.value)}
                 />
-                <TextField placeholder="Concepto" />
+                <TextField placeholder="Concepto" onChange={(e) => setConcept(e.target.value)} />
                 <Button
                     onClick={() => handleClick()}
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent', color: 'white' }}>
