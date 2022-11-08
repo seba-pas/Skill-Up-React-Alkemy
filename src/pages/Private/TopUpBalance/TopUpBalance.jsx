@@ -2,12 +2,11 @@ import { Button, FormControl, Input, InputAdornment, TextField } from '@mui/mate
 import React from 'react';
 import Swal from 'sweetalert2';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import BackButton from '../../../components/buttons/BackButton';
+
 import { ContentTopUpBalance } from './TopUpBalance.style';
-import {
-    // useDepositCashMutation,
-    useGetMeQuery
-} from '../../../store/services/dataApi';
+
+import BackButton from '../../../components/Buttons/BackButton';
+import { useGetMeQuery } from '../../../services/dataApi';
 
 let { id, amount, concept } = {
     amount: '',
@@ -16,10 +15,9 @@ let { id, amount, concept } = {
 };
 
 function TopUpBalance() {
-    // const [depositCash] = useDepositCashMutation();
-
+    // const [depositCash] = useDepositCashMutation;
     function cargarDatos() {
-        const temp = useGetMeQuery().data;
+        const temp = useGetMeQuery;
         return temp;
     }
     const data = cargarDatos();

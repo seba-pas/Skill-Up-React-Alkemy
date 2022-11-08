@@ -9,7 +9,16 @@ export const GlobalStyle = createGlobalStyle`
     #root {
         position: relative;
         min-height: 100vh;
-        padding: ${({ theme }) => theme.padding.layout};
+        @media ${({ theme }) => theme.breakpoints.mobileM}{
+            padding: ${({ theme }) => theme.padding.layoutMobile};
+        }
+        @media ${({ theme }) => theme.breakpoints.tablet}{
+            padding: ${({ theme }) => theme.padding.layoutDesktop};
+        }
+        @media ${({ theme }) => theme.breakpoints.laptop}{
+            padding: ${({ theme }) => theme.padding.layoutDesktop};
+        }
+        
     }
 
     #notistack-snackbar {
