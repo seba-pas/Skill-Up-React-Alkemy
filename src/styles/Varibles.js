@@ -8,7 +8,7 @@ export const theme = {
     colors: {
         primary: '#133FDB',
         white: '#f5f5f5',
-        gradient: 'linear-gradient(93.46deg, #133FDB 0%, rgba(183, 0, 77, 0.7) 103.75%)',
+        gradient: 'linear-gradient(93.46deg, #133FDB 0%, rgba(183, 0, 77, 0.9) 103.75%)',
         overlay: 'rgba(33,33,33,0.25)',
         h_primary: '#0F30A8'
     },
@@ -26,6 +26,7 @@ export const theme = {
     rounded: {
         s: '5px',
         m: '10px',
+        l: '16px',
         50: '50%'
     },
     shadow: {
@@ -35,7 +36,8 @@ export const theme = {
     padding: {
         input: '9px 15px',
         button: '12px 20px',
-        layout: '35px 23px',
+        layout: '35px 23px 85px',
+        card: '25px 16px',
         modal: '30px'
     },
     transition: {

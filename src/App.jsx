@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 // hooks
 import { Provider } from 'react-redux';
 import { SnackbarProvider } from 'notistack';
 // store
-import store from './store/store';
+import { store } from './store/store';
 // components
 import Router from './router/Router';
 import GlobalTheme from './styles/Theme';
