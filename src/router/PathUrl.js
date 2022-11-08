@@ -1,13 +1,15 @@
 export const PUBLIC = {
-    login: '/login'
+    signin: '/signin',
+    signup: '/signup'
 };
 
 export const PRIVATE = {
-    home: '/app/home',
-    topUpBalance: '/app/top-up-balance',
-    balance: '/app/balance',
-    profile: '/app/profile',
-    bills: '/app/bills',
-    contact: '/app/contact',
-    transactions: '/app/transactions'
+    root: '/app',
+    home: 'home',
+    topUpBalance: 'top-up-balance',
+    balance: 'balance',
+    profile: 'profile',
+    bills: 'bills',
+    contact: 'contact',
+    transactions: 'transactions'
 };

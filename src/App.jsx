@@ -1,7 +1,6 @@
 // hooks
-/* eslint-disable react/jsx-no-undef */
-// import './App.css';
 import { Provider } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
 // store
 import { store } from './store/store';
 // components
@@ -10,13 +9,20 @@ import GlobalTheme from './styles/Theme';
 
 function App() {
     return (
-        <div className="App">
-            <Provider store={store}>
+        <Provider store={store}>
+            <SnackbarProvider
+                autoHideDuration={3000}
+                maxSnack={3}
+                preventDuplicate
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                }}>
                 <GlobalTheme>
                     <Router />
                 </GlobalTheme>
-            </Provider>
-        </div>
+            </SnackbarProvider>
+        </Provider>
     );
 }
 

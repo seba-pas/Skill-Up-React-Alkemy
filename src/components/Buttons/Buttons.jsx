@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
-import { useNewTransactionMutation } from '../../store/services/dataApi';
+import { useNewTransactionMutation } from '../../services/dataApi';
 // import Stack from '@mui/material/Stack';
 import { PRIVATE } from '../../router/PathUrl';
 

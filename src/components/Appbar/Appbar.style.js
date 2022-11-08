@@ -1,43 +1,43 @@
 import styled from 'styled-components';
 
-export const ContentAppBarMobile = styled.div`
+export const ContentAppBarMobile = styled.div.attrs({
+    className: 'd-flex center'
+})`
     position: fixed;
+    gap: 40px;
     width: 100vw;
     height: 50px;
     bottom: 0;
-    background: #ffffff;
+    left: 0;
+    background: ${({ theme }) => theme.c_text.white};
     /* nav-shadow- */
-    box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.05);
-    margin-top: 5rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    box-shadow: ${({ theme }) => theme.shadow.nav};
 
     .centerNavButton .wrapper {
-        position: absolute;
-        left: 41.87%;
-        right: 42.13%;
-        top: -33.33%;
-        bottom: 33.33%;
-        background: #ffffff;
+        position: relative;
+        width: 60px;
+        height: 60px;
+        top: -25px;
+        background: ${({ theme }) => theme.c_text.white};
         display: flex;
         justify-content: center;
-        padding: 5px;
+        padding: 10px;
         /* nav-shadow- */
-        box-shadow: 0px -3px 8px rgba(0, 0, 0, 0.05);
-        border-radius: 50px;
+        box-shadow: ${({ theme }) => theme.shadow.nav};
+        border-radius: ${({ theme }) => theme.rounded[50]};
     }
-    @media screen and (min-width: 768px) {
+    @media ${({ theme }) => theme.breakpoints.tablet} {
         display: none;
     }
 `;
 
 export const ContentAppBar = styled.div`
+    display: none;
     .navBarDesktop {
         z-index: 100;
     }
-    @media screen and (max-width: 767px) {
-        display: none;
+    @media ${({ theme }) => theme.breakpoints.tablet} {
+        display: block;
     }
 `;
 
@@ -61,7 +61,7 @@ export function CenterNavButtonSvg() {
     return (
         <svg
             width="40"
-            height="42"
+            height="40"
             viewBox="0 0 40 42"
             fill="none"
             xmlns="http://www.w3.org/2000/svg">

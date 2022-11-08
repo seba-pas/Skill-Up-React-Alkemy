@@ -6,20 +6,17 @@ import AuthGuard from './AuthGuard';
 import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
 import { PRIVATE, PUBLIC } from './PathUrl';
-import ButtonAppBar from '../components/appbar/Appbar';
-import Login from '../components/Login';
-import CreateAccount from '../components/CreateAccount';
-import Home from '../components/Home';
 
-const Signin = lazy(() => import('../pages/Signin/Signin'));
-const Dashboard = lazy(() => import('../pages/Private/Home/Home'));
+const SignIn = lazy(() => import('../pages/SignIn/SignIn'));
+const SignUp = lazy(() => import('../pages/SignUp/SignUp'));
+
 const PrivateLayout = lazy(() => import('../layout/PrivateLayout/PrivateLayout'));
-
+const Home = lazy(() => import('../pages/Private/Home/Home'));
 const TopUpBalance = lazy(() => import('../pages/Private/TopUpBalance/TopUpBalance'));
 const Transactions = lazy(() => import('../pages/Private/Transactions/Transactions'));
 const Profile = lazy(() => import('../pages/Private/Profile/Profile'));
 const Bills = lazy(() => import('../pages/Private/Bills/Bills'));
-const Contact = lazy(() => import('../pages/Private/contact/Contact'));
+const Contact = lazy(() => import('../pages/Private/Contact/Contact'));
 const Balance = lazy(() => import('../pages/Private/Balance/Balance'));
 
 function Router() {
@@ -27,15 +24,14 @@ function Router() {
         <Suspense fallback={<h3>loading</h3>}>
             <BrowserRouter>
                 <RoutesWithNotFound>
-                    <Route path="/button" element={<ButtonAppBar />} />
+                    <Route path="/" element={<Navigate to={`${PRIVATE.root}/${PRIVATE.home}`} />} />
 
-                    <Route path="/" element={<Navigate to={PRIVATE.home} />} />
-
-                    <Route path={PUBLIC.login} element={<Signin />} />
+                    <Route path={PUBLIC.signin} element={<SignIn />} />
+                    <Route path={PUBLIC.signup} element={<SignUp />} />
 
                     <Route element={<AuthGuard />}>
-                        <Route element={<PrivateLayout />}>
-                            <Route path={PRIVATE.home} element={<Dashboard />} />
+                        <Route path={`${PRIVATE.root}`} element={<PrivateLayout />}>
+                            <Route path={PRIVATE.home} element={<Home />} />
                             <Route path={PRIVATE.topUpBalance} element={<TopUpBalance />} />
                             <Route path={PRIVATE.balance} element={<Balance />} />
                             <Route path={PRIVATE.transactions} element={<Transactions />} />
@@ -44,9 +40,6 @@ function Router() {
                             <Route path={PRIVATE.contact} element={<Contact />} />
                         </Route>
                     </Route>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/Home" element={<Home />} />
-                    <Route path="/CreateAccount" element={<CreateAccount />} />
                 </RoutesWithNotFound>
             </BrowserRouter>
         </Suspense>
