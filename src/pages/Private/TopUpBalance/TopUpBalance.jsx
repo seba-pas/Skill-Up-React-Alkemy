@@ -1,5 +1,5 @@
 import { Button, FormControl, Input, InputAdornment, TextField } from '@mui/material';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
@@ -8,39 +8,45 @@ import { ContentTopUpBalance } from './TopUpBalance.style';
 import BackButton from '../../../components/Buttons/BackButton';
 import { useGetMeQuery } from '../../../services/dataApi';
 
-let { id, amount, concept } = {
-    amount: '',
-    id: '',
-    concept: ''
-};
+// let { id, amount, concept } = {
+//     amount: '',
+//     id: '',
+//     concept: ''
+// };
 
 function TopUpBalance() {
     // const [depositCash] = useDepositCashMutation;
-    function cargarDatos() {
-        const temp = useGetMeQuery;
-        return temp;
-    }
-    const data = cargarDatos();
-    const validateAmount = (e) => {
-        e.preventDefault();
-        const tempAmount = e.target.value;
-        if (tempAmount < 0) {
-            Swal.fire('Ingrese un valor mayor que 0');
-            return 0;
+    const getMeQuery = useGetMeQuery();
+    const [amount, setAmount] = useState();
+    const [data, setData] = useState();
+    useEffect(() => {
+        const temp = getMeQuery.data;
+        setData(temp);
+    }, [getMeQuery]);
+    useEffect(() => {
+        if (amount < 0) {
+            Swal.fire('', 'Ingrese un valor mayor que 0', 'warning');
         }
-        amount = tempAmount;
-        return amount;
-    };
+    }, [amount]);
+    // const validateAmount = (e) => {
+    //     e.preventDefault();
+    //     const tempAmount = e.target.value;
+    //     if (tempAmount < 0) {
+    //         Swal.fire('Ingrese un valor mayor que 0');
+    //         return false;
+    //     }
+    //     setAmount(tempAmount);
+    //     return true;
+    // };
     const handleClick = () => {
-        id = data.id;
-        console.log(id);
+        console.log(data);
         // logica para ingresar el id de cuenta y hacer el deposito
         // depositCash(id, concept, amount);
     };
-    const HandleConcept = (e) => {
-        concept = e.target.value;
-        return concept;
-    };
+    // const HandleConcept = (e) => {
+    //     concept = e.target.value;
+    //     return concept;
+    // };
     return (
         <ContentTopUpBalance>
             <div className="backButtonContainer">
@@ -52,9 +58,9 @@ function TopUpBalance() {
                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
                     type="number"
                     name="amount"
-                    onChange={validateAmount}
+                    onChange={(e) => setAmount(e.target.value)}
                 />
-                <TextField placeholder="Concepto" onChange={HandleConcept} />
+                <TextField placeholder="Concepto" />
                 <Button
                     onClick={() => handleClick()}
                     sx={{ backgroundColor: '#133fdb', borderColor: 'transparent', color: 'white' }}>

@@ -55,54 +55,36 @@ export default function ButtonAppBar() {
                                 }}>
                                 <ListItem button>
                                     <Link to={PRIVATE.home}>
-                                        <ListItemText
-                                            primary="Home"
-                                            onClick={() => setIsDrawerOpen(false)}
-                                        />
+                                        <ListItemText primary="Home" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
                                     <Link to={PRIVATE.profile}>
-                                        <ListItemText
-                                            primary="Mi perfil"
-                                            onClick={() => setIsDrawerOpen(false)}
-                                        />
+                                        <ListItemText primary="Mi perfil" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
                                     <Link to={PRIVATE.bills}>
-                                        <ListItemText
-                                            primary="Gastos"
-                                            onClick={() => setIsDrawerOpen(false)}
-                                        />
+                                        <ListItemText primary="Gastos" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
                                     <Link to={PRIVATE.balance}>
-                                        <ListItemText
-                                            primary="Movimientos"
-                                            onClick={() => setIsDrawerOpen(false)}
-                                        />
+                                        <ListItemText primary="Movimientos" />
                                     </Link>
                                 </ListItem>
                                 <ListItem button>
                                     <Link to={PRIVATE.topUpBalance}>
-                                        <ListItemText
-                                            primary="Agregar Saldo"
-                                            onClick={() => setIsDrawerOpen(false)}
-                                        />
+                                        <ListItemText primary="Agregar Saldo" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
                                     <Link to={PRIVATE.contact}>
-                                        <ListItemText
-                                            primary="Contáctanos"
-                                            onClick={() => setIsDrawerOpen(false)}
-                                        />
+                                        <ListItemText primary="Contáctanos" />
                                     </Link>
                                 </ListItem>
                             </List>
