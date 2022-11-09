@@ -72,13 +72,20 @@ export default function ButtonAppBar() {
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.balance}>
+                                    <Link to={PRIVATE.topUpBalance}>
+                                        <ListItemText primary="Agregar Saldo" />
+                                    </Link>
+                                </ListItem>
+
+                                <ListItem button>
+                                    <Link to={PRIVATE.transactions}>
                                         <ListItemText primary="Movimientos" />
                                     </Link>
                                 </ListItem>
+
                                 <ListItem button>
-                                    <Link to={PRIVATE.topUpBalance}>
-                                        <ListItemText primary="Agregar Saldo" />
+                                    <Link to={PRIVATE.balance}>
+                                        <ListItemText primary="Balance" />
                                     </Link>
                                 </ListItem>
 
