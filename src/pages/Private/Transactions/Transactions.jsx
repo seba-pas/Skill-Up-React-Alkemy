@@ -1,8 +1,13 @@
 import React from 'react';
+import { useGetTransactionsQuery } from '../../../services/dataApi';
 import { ContentTransactions } from './transacctions.style';
 
-function Transacciones() {
-    const data = [
+export default function Transacciones() {
+    const { data, isLoading, isError, error } = useGetTransactionsQuery();
+
+    console.log(data, isLoading, isError, error);
+
+    const dataA = [
         {
             id: 1,
             detail: 'Shopping',
@@ -25,7 +30,7 @@ function Transacciones() {
     return (
         <ContentTransactions className="transcontainer">
             <h2>Transactions</h2>
-            {data.map((e) => {
+            {dataA.map((e) => {
                 return (
                     <div className="transcard" key={e.id}>
                         <span className="detail">{e.detail}</span>
@@ -37,4 +42,3 @@ function Transacciones() {
         </ContentTransactions>
     );
 }
-
