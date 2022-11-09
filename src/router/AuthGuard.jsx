@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 function AuthGuard() {
-    const userState = useSelector((store) => store.user);
-    const existUser = !!userState.id_user;
+    // const userState = useSelector((store) => store.user);
+    const existUser = localStorage.getItem('token') !== null;
 
     return !existUser ? <Navigate replace to="/login" /> : <Outlet />;
 }
