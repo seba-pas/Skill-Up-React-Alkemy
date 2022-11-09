@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { FormLabel, Input, TextField } from '@mui/material';
 import { ContentBills } from './Bills.styles';
+import { useNewExpenseMutation } from '../../../services/dataApi';
 
 function Bills() {
     const [amount, setAmount] = useState(0);
     const [concept, setConcept] = useState('');
+    const newExpense = useNewExpenseMutation();
+    // implementación de lógica para obtener el id de cuenta
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(`${amount} ${concept}`);
+        const id = 287;
+        const res = async () => {
+            newExpense(id, concept, amount);
+        };
+        console.log(res);
     }
 
     return (
