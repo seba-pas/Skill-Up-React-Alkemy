@@ -12,21 +12,4 @@ export const ContentTopUpBalance = styled.section`
     gap: 3rem;
     background: #fefefe;
     height: 100vh;
-    .backButtonContainer {
-        position: absolute;
-        top: 10px;
-        left: 0;
-    }
-    .topUpForm {
-        gap: 3rem;
-        font-family: 'Rubik';
-        font-style: normal;
-        font-size: 1.5rem;
-    }
-    @media screen and (min-width: 768px) {
-        .backButtonContainer {
-            top: 50%;
-            left: 47%;
-        }
-    }
 `;
