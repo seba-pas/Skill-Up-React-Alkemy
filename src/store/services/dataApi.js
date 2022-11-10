@@ -20,7 +20,7 @@ export const dataApi = createApi({
             query: (id) => `/users/${id}`
         }),
         getAccount: builder.query({
-            query: (id) => `/accounts/${id}`
+            query: () => '/accounts/me'
         }),
         getTransactions: builder.query({
             query: (page) => `/transactions/?page=${page}`
@@ -30,13 +30,12 @@ export const dataApi = createApi({
             query: (id) => `/transactions/${id}`
         }),
         newAccount: builder.mutation({
-            query: ({ money, userId }) => ({
+            query: () => ({
                 url: '/accounts',
                 method: 'POST',
                 body: {
-                    money,
-                    isBlocked: 'false',
-                    userId
+                    money: 150,
+                    isBlocked: 'false'
                 }
             })
         }),

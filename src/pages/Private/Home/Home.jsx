@@ -7,23 +7,20 @@ import Saldo2 from '../../../components/saldo/Saldo2';
 import AvatarUser from '../../../components/user/AvatarUser';
 // styles
 import { ContentHome } from './Home.styles.';
-import { useGetMeQuery } from '../../../store/services/dataApi';
+import { useGetAccountQuery } from '../../../store/services/dataApi';
 
 export default function Home() {
     // const [saldo, setSaldo] = useState(0);
 
-    const { data, isLoading } = useGetMeQuery();
+    // al loggearse chequeamos si tiene cuenta asociada, de no tener se dirige al usuario a una pagina donde crea su nueva cuenta, solo se le dice con cuanto dinero comienza y de ahi ya se asigna la cuenta nueva, la proxima vez va a detectar que tiene cuenta nueva y no va a esa pagina
+
+    const { data, isLoading } = useGetAccountQuery();
 
     if (isLoading) {
         return <p>Loading</p>;
     }
 
-    const accountId = parseInt(
-        data.first_name.slice(data.first_name.indexOf('/') + 1, data.first_name.length),
-        10
-    );
     console.log(data);
-    console.log(accountId);
 
     return (
         <ContentHome style={{ background: 'transparent', height: '100vh' }}>
