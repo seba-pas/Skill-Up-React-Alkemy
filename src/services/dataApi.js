@@ -52,7 +52,7 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
-                    type: 'topup' || 'payment',
+                    type: 'topup',
                     concept,
                     amount
                 }
