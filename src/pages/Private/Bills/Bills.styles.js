@@ -8,7 +8,7 @@ export const ContentBills = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10rem;
+    padding-top: 2rem;
     gap: 3rem;
     margin: 40px 0 0 0;
     .top {
