@@ -60,30 +60,37 @@ export default function ButtonAppBar() {
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.perfil}>
+                                    <Link to={PRIVATE.profile}>
                                         <ListItemText primary="Mi perfil" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.gastos}>
+                                    <Link to={PRIVATE.bills}>
                                         <ListItemText primary="Gastos" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.movimientos}>
-                                        <ListItemText primary="Movimientos" />
-                                    </Link>
-                                </ListItem>
-                                <ListItem button>
-                                    <Link to={PRIVATE.cargarSaldo}>
+                                    <Link to={PRIVATE.topUpBalance}>
                                         <ListItemText primary="Agregar Saldo" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.contacto}>
+                                    <Link to={PRIVATE.transactions}>
+                                        <ListItemText primary="Movimientos" />
+                                    </Link>
+                                </ListItem>
+
+                                <ListItem button>
+                                    <Link to={PRIVATE.balance}>
+                                        <ListItemText primary="Balance" />
+                                    </Link>
+                                </ListItem>
+
+                                <ListItem button>
+                                    <Link to={PRIVATE.contact}>
                                         <ListItemText primary="Contáctanos" />
                                     </Link>
                                 </ListItem>
