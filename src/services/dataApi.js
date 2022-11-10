@@ -24,22 +24,21 @@ export const dataApi = createApi({
             query: (id) => `/users/${id}`
         }),
         getAccount: builder.query({
-            query: (id) => `/accounts/${id}`
+            query: () => '/accounts/me'
         }),
         getTransactions: builder.query({
-            query: (url) => url || '/transactions'
+            query: (page) => `/transactions/?page=${page}`
         }),
         getTransaction: builder.query({
             query: (id) => `/transactions/${id}`
         }),
         newAccount: builder.mutation({
-            query: ({ money, userId }) => ({
+            query: () => ({
                 url: '/accounts',
                 method: 'POST',
                 body: {
-                    money,
-                    isBlocked: 'false',
-                    userId
+                    money: 150,
+                    isBlocked: 'false'
                 }
             })
         }),
@@ -48,6 +47,7 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
+                    // check this line
                     type: 'topup' || 'payment',
                     concept,
                     amount
@@ -59,6 +59,7 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
+                    // check this line
                     type: 'topup' || 'payment',
                     concept,
                     amount: amount * -1

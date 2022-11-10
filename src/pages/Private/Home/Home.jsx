@@ -7,8 +7,17 @@ import LastestTransactions from './Components/LastestTransactions/LastestTransac
 import DecorationLayout from '../../../layout/DecorationLayout/DecorationLayout';
 // styles
 import { ContentHome } from './Home.styles';
+import { useGetAccountQuery } from '../../../services/dataApi';
 
 export default function Home() {
+    const { data, isLoading } = useGetAccountQuery();
+
+    if (isLoading) {
+        return <p>Loading</p>;
+    }
+
+    console.log(data);
+
     return (
         <DecorationLayout>
             <ContentHome>
