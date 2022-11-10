@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '../../../styles/Varibles';
 
 export const ContentBills = styled.section`
     font-family: 'Rubik';
@@ -11,7 +10,6 @@ export const ContentBills = styled.section`
     align-items: center;
     padding-top: 10rem;
     gap: 3rem;
-    height: 100vh;
     margin: 40px 0 0 0;
     .top {
         margin: 0 0 20px;
@@ -20,11 +18,11 @@ export const ContentBills = styled.section`
         }
     }
     .billSubmit {
-        background-color: ${theme.colors.primary};
+        background-color: ${({ theme }) => theme.colors.primary};
     }
     .billSubmit:hover {
-        background-color: ${theme.colors.white};
-        color: ${theme.colors.primary};
+        background-color: ${({ theme }) => theme.colors.white};
+        color: ${({ theme }) => theme.colors.primary};
     }
     .billsForm {
         display: flex;
@@ -35,8 +33,22 @@ export const ContentBills = styled.section`
         border-radius: 5px;
         font-size: 2rem;
         text-align: center;
+        color: ${({ theme }) => theme.colors.white};
     }
     .billsForm label {
         font-size: 2rem;
+        color: ${({ theme }) => theme.colors.white};
+    }
+    .card {
+        width: 100%;
+        background: ${({ theme }) => theme.colors.gradient};
+        border-radius: ${({ theme }) => theme.rounded.l};
+        transition: ${({ theme }) => theme.transition.default};
+        padding: ${({ theme }) => theme.padding.card};
+        text-align: center;
+    }
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: ${({ theme }) => theme.shadow.box};
     }
 `;

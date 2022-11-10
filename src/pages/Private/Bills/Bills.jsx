@@ -11,10 +11,7 @@ function Bills() {
     function handleSubmit(e) {
         e.preventDefault();
         const id = 287;
-        const res = async () => {
-            newExpense(id, concept, amount);
-        };
-        console.log(res);
+        newExpense(id, concept, amount);
     }
 
     return (
@@ -25,12 +22,12 @@ function Bills() {
 
             <div className="card">
                 <form className="d-flex-column billsForm">
-                    <FormLabel>Monto: $</FormLabel>
+                    <FormLabel>Monto:</FormLabel>
                     <Input
                         type="number"
                         name="amount"
                         id="amount"
-                        placeholder="0.00"
+                        placeholder="$ 0.00"
                         onChange={(e) => setAmount(e.target.value)}
                     />
                     <FormLabel>Concepto:</FormLabel>
