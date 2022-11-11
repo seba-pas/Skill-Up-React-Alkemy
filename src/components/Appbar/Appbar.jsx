@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PRIVATE } from '../../router/PathUrl';
 import { ContentAppBar } from './Appbar.style';
+import LogoutButton from '../Buttons/Logout';
 
 export default function ButtonAppBar() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -35,10 +36,8 @@ export default function ButtonAppBar() {
                             style={{ padding: '1px' }}
                             variant="h4"
                             component="div"
-                            sx={{ flexGrow: 1 }}>
-                            <Link to={PRIVATE.home}>
-                                {/* <Button sx={{ color: 'white' }}>Alkemy Wallet</Button> */}
-                            </Link>
+                            sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                            <LogoutButton />
                         </Typography>
 
                         <Drawer
@@ -53,9 +52,9 @@ export default function ButtonAppBar() {
                                     backgroundColor: '#2660A4',
                                     color: 'white'
                                 }}>
-                                <ListItem button>
-                                    <Link to={PRIVATE.home}>
-                                        <ListItemText primary="Home" />
+                                <ListItem button sx={{ color: 'white' }}>
+                                    <Link to={PRIVATE.home} sx={{ color: 'white' }}>
+                                        <ListItemText primary="Home" sx={{ color: 'white' }} />
                                     </Link>
                                 </ListItem>
 
