@@ -1,5 +1,10 @@
+import { useGetMeQuery } from '../../../services/dataApi';
+
 function Contact() {
-    return <div>Contactanos</div>;
+    const [GetUser] = useGetMeQuery();
+    // const id = localStorage.getItem('token');
+
+    return <div>{GetUser} </div>;
 }
 
 export default Contact;
