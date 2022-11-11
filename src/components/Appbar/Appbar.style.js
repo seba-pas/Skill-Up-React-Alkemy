@@ -33,6 +33,10 @@ export const ContentAppBarMobile = styled.div.attrs({
 
 export const ContentAppBar = styled.div`
     display: none;
+
+    button {
+        color: white !important;
+    }
     .navBarDesktop {
         z-index: 100;
     }
