@@ -75,7 +75,7 @@ export const ContentTransactions = styled.section`
         flex-direction: column;
         margin-bottom: 5rem;
     }
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 426px) {
         .date,
         .price,
         .detail {

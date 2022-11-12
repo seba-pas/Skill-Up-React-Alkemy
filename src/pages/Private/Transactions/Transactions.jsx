@@ -1,17 +1,22 @@
 import { Pagination, Stack } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import { updatePage } from '../../../store/states/page';
 import { ContentTransactions } from './transacctions.style';
 
 function Transacciones() {
+    const dispatch = useDispatch();
     const token = localStorage.getItem('token');
     const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
     const [disableNB, setDisableNB] = useState();
     const [disablePB, setDisablePB] = useState();
+    const [isLoading, setIsLoading] = useState(true);
     const baseUrl = `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/transactions/?page=${page}`;
     useEffect(() => {
+        setIsLoading(true);
         axios
             .get(baseUrl, {
                 headers: {
@@ -30,7 +35,7 @@ function Transacciones() {
                 } else {
                     setDisablePB(false);
                 }
-
+                setIsLoading(false);
                 console.log(res.data);
             })
             .catch((err) => {
@@ -38,6 +43,13 @@ function Transacciones() {
             });
         console.log(page);
     }, [page]);
+    useEffect(() => {
+        if (isLoading) {
+            dispatch(updatePage({ isLoading: true }));
+        } else {
+            dispatch(updatePage({ isLoading: false }));
+        }
+    }, [isLoading]);
 
     function isBill(value) {
         if (value < 0) {
