@@ -17,13 +17,17 @@ function CashBalance() {
                 }
             })
             .then((res) => {
-                setData(res.data[0].money);
+                if (res.data.length > 0) {
+                    setData(res.data[0].money);
+                } else {
+                    setData('No hay cuenta');
+                }
             })
             .catch((err) => {
-                Swal.fire('', err, 'error');
+                Swal.fire('Error de saldo', err.message, 'error');
+                setData('Error');
             });
     }, []);
-    console.log(data);
     return (
         <ContentCashBalance>
             <div className="textos d-flex between f-14 fw-4 t-white">
