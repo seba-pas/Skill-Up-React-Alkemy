@@ -6,14 +6,9 @@ export const ContentTransactions = styled.section`
     justify-content: center;
     align-items: center;
     margin-top: 10%;
-    gap: 2rem;
-    .transcontainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
+    h2 {
+        margin-bottom: 3rem;
     }
-
     .transcard {
         display: flex;
         flex-direction: row;
@@ -21,8 +16,8 @@ export const ContentTransactions = styled.section`
         justify-self: center;
         gap: 2rem;
         padding: 16px;
-        margin-bottom: 20px;
-        width: 70vw;
+        margin-bottom: 10px;
+        width: fit-content;
         height: 50px;
         background: #ffffff;
         border-radius: 16px;
@@ -79,5 +74,12 @@ export const ContentTransactions = styled.section`
         display: flex;
         flex-direction: column;
         margin-bottom: 5rem;
+    }
+    @media screen and (max-width: 768px) {
+        .date,
+        .price,
+        .detail {
+            font-size: 1rem;
+        }
     }
 `;

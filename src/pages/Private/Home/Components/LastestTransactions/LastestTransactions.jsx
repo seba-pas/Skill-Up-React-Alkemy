@@ -53,7 +53,7 @@ function LastestTransactions() {
                                           <h4
                                               className="text"
                                               style={{ color: isBill(oneTransaction.amount) }}>
-                                              {oneTransaction.amount}{' '}
+                                              {oneTransaction.amount}
                                           </h4>
                                       </div>
                                   </div>
