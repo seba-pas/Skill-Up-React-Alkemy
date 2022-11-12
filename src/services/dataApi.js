@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+// import { UserKey } from '../store/states/user';
+
 export const dataApi = createApi({
     reducerPaths: 'apiSlice',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/',
+        baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token');
 
@@ -22,6 +24,9 @@ export const dataApi = createApi({
         }),
         getUser: builder.query({
             query: (id) => `/users/${id}`
+        }),
+        getAccounts: builder.query({
+            query: () => '/accounts'
         }),
         getAccount: builder.query({
             query: () => '/accounts/me'
@@ -47,7 +52,6 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
-                    // check this line
                     type: 'topup',
                     concept,
                     amount
@@ -59,7 +63,6 @@ export const dataApi = createApi({
                 url: `/accounts/${id}`,
                 method: 'POST',
                 body: {
-                    // check this line
                     type: 'payment',
                     concept,
                     amount: amount * -1
@@ -87,6 +90,7 @@ export const dataApi = createApi({
 export const {
     useGetMeQuery,
     useGetUserQuery,
+    useGetAccountsQuery,
     useGetAccountQuery,
     useGetTransactionsQuery,
     useGetTransactionQuery,

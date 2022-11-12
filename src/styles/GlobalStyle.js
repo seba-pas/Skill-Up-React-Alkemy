@@ -9,7 +9,16 @@ export const GlobalStyle = createGlobalStyle`
     #root {
         position: relative;
         min-height: 100vh;
-        padding: ${({ theme }) => theme.padding.layout};
+        @media ${({ theme }) => theme.breakpoints.mobileM}{
+            padding: ${({ theme }) => theme.padding.layoutMobile};
+        }
+        @media ${({ theme }) => theme.breakpoints.tablet}{
+            padding: ${({ theme }) => theme.padding.layoutDesktop};
+        }
+        @media ${({ theme }) => theme.breakpoints.laptop}{
+            padding: ${({ theme }) => theme.padding.layoutDesktop};
+        }
+        
     }
 
     #notistack-snackbar {
@@ -18,6 +27,9 @@ export const GlobalStyle = createGlobalStyle`
     /* class */
     .d-flex {
         display: flex;
+    }
+    .d-block {
+        display: block;
     }
     .d-flex.center {
         justify-content: center;
@@ -68,6 +80,12 @@ export const GlobalStyle = createGlobalStyle`
     }
     .c-primary {
         color: ${({ theme }) => theme.colors.primary};
+    }
+    .c-default {
+        color: ${({ theme }) => theme.c_text.principal};
+    }
+    .c-danger {
+        color: ${({ theme }) => theme.alerts.error};
     }
 
 
@@ -129,5 +147,14 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
-
+    .overlay {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: ${({ theme }) => theme.colors.overlay};
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+    }
 `;

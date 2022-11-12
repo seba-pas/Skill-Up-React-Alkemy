@@ -36,7 +36,8 @@ export const theme = {
     padding: {
         input: '9px 15px',
         button: '12px 20px',
-        layout: '35px 23px 85px',
+        layoutMobile: '35px 23px 85px',
+        layoutDesktop: '1px 1px 85px',
         card: '25px 16px',
         modal: '30px'
     },

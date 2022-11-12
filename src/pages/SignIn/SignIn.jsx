@@ -1,63 +1,89 @@
+/* eslint-disable no-unused-vars */
 // hooks
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import { Link, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import { updateUser } from '../../store/states/user';
+import { updatePage } from '../../store/states/page';
+
 // components
 import CustomInput from '../../components/CustomInput/CustomInput';
 // layouts
 import DecorationLayout from '../../layout/DecorationLayout/DecorationLayout';
 // utils
 import { PUBLIC } from '../../router/PathUrl';
+import { endpoints } from '../../services/Endpoints';
+
 import { ContentSignIn } from './SignIn.styles';
 
 function Login() {
-    const [formState, setFormState] = useState({
+    const [formValues, setFormValues] = useState({
         email: '',
         password: ''
     });
-    const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
 
-    const submitHandler = (e) => {
+    // const navigate = useNavigate();
+    const dispacth = useDispatch();
+    const UserState = useSelector((store) => store.user);
+
+    const submitHandler = async (e) => {
         e.preventDefault();
-        const email = e.target.email.value.trim();
-        const password = e.target.password.value.trim();
-        axios
-            .post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/login', {
-                email,
-                password
-            })
-            .then((resp) => {
-                const validEmail = !!formState.email;
-                if (!validEmail) throw Error();
-                const tokenReceived = resp.data.accessToken;
-                localStorage.setItem('token', tokenReceived);
-                axios
-                    .get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/auth/me', {
-                        headers: {
-                            Authorization: `Bearer ${tokenReceived}`
-                        }
-                    })
-                    .then((response) => {
-                        const nameUser = response.data.first_name;
-                        localStorage.setItem('nameUser', nameUser);
-                        navigate('/');
-                    });
-            })
-            .catch(() => {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Datos Inválidos'
-                });
+
+        dispacth(updatePage({ isLoading: true }));
+
+        try {
+            const login = await axios.post(endpoints.base + endpoints.login, {
+                email: formValues.email,
+                password: formValues.password
             });
+            const headerService = {
+                headers: {
+                    Authorization: `Bearer ${login.data.accessToken}`
+                }
+            };
+
+            const currentUser = await axios.get(
+                endpoints.base + endpoints.currentUser,
+                headerService
+            );
+
+            const currentAccount = await axios.get(
+                endpoints.base + endpoints.currentAccount,
+                headerService
+            );
+
+            const dataUser = {
+                token: login.data.accessToken,
+                name: `${currentUser.data.first_name} ${currentUser.data.last_name}`,
+                email: currentUser.data.email,
+                roleId: currentUser.data.roleId,
+                points: currentUser.data.points,
+                user_id: currentUser.data.id,
+                account_id: currentAccount.data[0].id,
+                money: currentAccount.data[0].money,
+                isBlocked: currentAccount.data[0].isBlocked
+            };
+            dispacth(updateUser(dataUser));
+            dispacth(updatePage({ isLoading: false }));
+        } catch (error) {
+            enqueueSnackbar('Ocurrio un problema.', { variant: 'error' });
+            dispacth(updatePage({ isLoading: false }));
+        }
     };
 
     const handleInputChange = (e) => {
-        setFormState({
-            ...formState,
+        setFormValues({
+            ...formValues,
             [e.target.name]: e.target.value.trim()
         });
     };
+
+    if (UserState.token) {
+        return <Navigate to="/" />;
+    }
 
     return (
         <DecorationLayout>
@@ -75,7 +101,7 @@ function Login() {
                         label="Email"
                         placeholder="Email"
                         onChange={handleInputChange}
-                        value={formState.email}
+                        value={formValues.email}
                     />
                     <CustomInput
                         type="password"
@@ -83,9 +109,12 @@ function Login() {
                         label="Password"
                         placeholder="Password"
                         onChange={handleInputChange}
-                        value={formState.password}
+                        value={formValues.password}
                     />
-                    <button type="submit" className="btn primary">
+                    <button
+                        type="submit"
+                        className="btn primary"
+                        disabled={!(!!formValues.email && !!formValues.password)}>
                         Log in
                     </button>
                 </form>

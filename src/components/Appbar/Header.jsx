@@ -1,4 +1,8 @@
-import * as React from 'react';
+// hooks
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// components
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,14 +13,21 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
-import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+// utils
+import { resetUser } from '../../store/states/user';
 import { PRIVATE } from '../../router/PathUrl';
+// styles
 import { ContentAppBar } from './Appbar.style';
 
-export default function ButtonAppBar() {
+function Header() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleSignOut = () => {
+        dispatch(resetUser());
+    };
+
     return (
         <ContentAppBar className="navBarDesktop">
             <Box sx={{ flexGrow: 1 }}>
@@ -35,10 +46,10 @@ export default function ButtonAppBar() {
                             style={{ padding: '1px' }}
                             variant="h4"
                             component="div"
-                            sx={{ flexGrow: 1 }}>
-                            <Link to={PRIVATE.home}>
-                                {/* <Button sx={{ color: 'white' }}>Alkemy Wallet</Button> */}
-                            </Link>
+                            sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
+                            <button type="button" onClick={handleSignOut}>
+                                Cerrar Sesión
+                            </button>
                         </Typography>
 
                         <Drawer
@@ -53,37 +64,44 @@ export default function ButtonAppBar() {
                                     backgroundColor: '#2660A4',
                                     color: 'white'
                                 }}>
-                                <ListItem button>
-                                    <Link to={PRIVATE.home}>
-                                        <ListItemText primary="Home" />
+                                <ListItem button sx={{ color: 'white' }}>
+                                    <Link to={PRIVATE.home} sx={{ color: 'white' }}>
+                                        <ListItemText primary="Home" sx={{ color: 'white' }} />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.perfil}>
+                                    <Link to={PRIVATE.profile}>
                                         <ListItemText primary="Mi perfil" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.gastos}>
+                                    <Link to={PRIVATE.bills}>
                                         <ListItemText primary="Gastos" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.movimientos}>
-                                        <ListItemText primary="Movimientos" />
-                                    </Link>
-                                </ListItem>
-                                <ListItem button>
-                                    <Link to={PRIVATE.cargarSaldo}>
+                                    <Link to={PRIVATE.topUpBalance}>
                                         <ListItemText primary="Agregar Saldo" />
                                     </Link>
                                 </ListItem>
 
                                 <ListItem button>
-                                    <Link to={PRIVATE.contacto}>
+                                    <Link to={PRIVATE.transactions}>
+                                        <ListItemText primary="Movimientos" />
+                                    </Link>
+                                </ListItem>
+
+                                <ListItem button>
+                                    <Link to={PRIVATE.balance}>
+                                        <ListItemText primary="Balance" />
+                                    </Link>
+                                </ListItem>
+
+                                <ListItem button>
+                                    <Link to={PRIVATE.contact}>
                                         <ListItemText primary="Contáctanos" />
                                     </Link>
                                 </ListItem>
@@ -95,3 +113,4 @@ export default function ButtonAppBar() {
         </ContentAppBar>
     );
 }
+export default Header;
