@@ -39,7 +39,9 @@ function Login() {
                         }
                     })
                     .then((response) => {
+                        const idUser = response.data.id;
                         const nameUser = response.data.first_name;
+                        localStorage.setItem('idUser', idUser);
                         localStorage.setItem('nameUser', nameUser);
                         navigate('/');
                     });
