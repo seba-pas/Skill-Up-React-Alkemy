@@ -1,4 +1,8 @@
-import * as React from 'react';
+// hooks
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+// components
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,15 +13,21 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Drawer from '@mui/material/Drawer';
-import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+// utils
+import { resetUser } from '../../store/states/user';
 import { PRIVATE } from '../../router/PathUrl';
+// styles
 import { ContentAppBar } from './Appbar.style';
-import LogoutButton from '../Buttons/Logout';
 
-export default function ButtonAppBar() {
+function Header() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleSignOut = () => {
+        dispatch(resetUser());
+    };
+
     return (
         <ContentAppBar className="navBarDesktop">
             <Box sx={{ flexGrow: 1 }}>
@@ -37,7 +47,9 @@ export default function ButtonAppBar() {
                             variant="h4"
                             component="div"
                             sx={{ flexGrow: 1, display: 'flex', justifyContent: 'flex-end' }}>
-                            <LogoutButton />
+                            <button type="button" onClick={handleSignOut}>
+                                Cerrar Sesión
+                            </button>
                         </Typography>
 
                         <Drawer
@@ -101,3 +113,4 @@ export default function ButtonAppBar() {
         </ContentAppBar>
     );
 }
+export default Header;

@@ -1,21 +1,28 @@
 // hooks
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { useSnackbar } from 'notistack';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../store/states/user';
+import { updatePage } from '../../store/states/page';
 // components
 import CustomInput from '../../components/CustomInput/CustomInput';
 // layouts
 import DecorationLayout from '../../layout/DecorationLayout/DecorationLayout';
 // utils
 import { PUBLIC } from '../../router/PathUrl';
+import { endpoints } from '../../services/Endpoints';
 
 import { ContentSignUp } from './SignUp.styles';
 
 function SignUp() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    const dispacth = useDispatch();
     const { enqueueSnackbar } = useSnackbar();
+    const UserState = useSelector((store) => store.user);
 
     const [data, setData] = useState({
         first_name: '',
@@ -31,44 +38,76 @@ function SignUp() {
             [e.target.name]: e.target.value.trim()
         });
     };
-    const submitHandler = (e) => {
+
+    const validarPassword = () => data.password === data.pswrepeat;
+
+    const submitHandler = async (e) => {
         e.preventDefault();
-        const password1 = data.password.trim();
-        const password2 = data.pswrepeat.trim();
-        if (password1 !== password2) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Las contraseñas no coinciden'
+
+        if (!validarPassword()) {
+            enqueueSnackbar('Las contraseñas no coinciden', { variant: 'error' });
+            return;
+        }
+
+        dispacth(updatePage({ isLoading: true }));
+        try {
+            const signUpUser = await axios.post(endpoints.base + endpoints.createUser, {
+                first_name: data.first_name,
+                email: data.email,
+                last_name: data.last_name,
+                password: data.password,
+                roleId: 2,
+                points: 0
             });
-        } else {
-            axios
-                .post('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/users', {
-                    firts_name: data.first_name,
-                    email: data.email,
-                    last_name: data.last_name,
-                    password: data.password
-                })
-                .then(() => {
-                    Swal.fire({
-                        title: 'Exito!',
-                        text: 'Cuenta creada con exito'
-                    });
-                    navigate('/');
-                })
-                .catch(() => {
-                    enqueueSnackbar('El email igresado ya existe', { variant: 'error' });
-                    // Swal.fire({
-                    //     title: 'Error!',
-                    //     text: 'El email ingresado ya existe'
-                    // });
-                });
+            const signInUser = await axios.post(endpoints.base + endpoints.login, {
+                email: signUpUser.data.email,
+                password: data.password
+            });
+
+            const createAccount = await axios.post(
+                endpoints.base + endpoints.createAccount,
+                {
+                    creationDate: new Date(),
+                    money: 0,
+                    isBlocked: false,
+                    userId: signInUser.data.id
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${signInUser.data.accessToken}`
+                    }
+                }
+            );
+
+            const dataUser = {
+                token: signInUser.data.accessToken,
+                name: `${signUpUser.data.first_name} ${signUpUser.data.last_name}`,
+                email: signUpUser.data.email,
+                roleId: signUpUser.data.roleId,
+                points: signUpUser.data.points,
+                user_id: signUpUser.data.id,
+                account_id: createAccount.data.id,
+                money: createAccount.data.money,
+                isBlocked: createAccount.data.isBlocked
+            };
+
+            dispacth(updateUser(dataUser));
+            dispacth(updatePage({ isLoading: false }));
+        } catch (error) {
+            enqueueSnackbar('Ocurrio un error', { variant: 'error' });
+            dispacth(updatePage({ isLoading: false }));
         }
     };
+
+    if (UserState.token) {
+        return <Navigate to="/" />;
+    }
+
     return (
         <DecorationLayout>
             <ContentSignUp>
                 <div className="contenedor-imagen">
-                    <h1 className="text-center f-24">
+                    <h1 className="t-center f-24">
                         Welcome to <br /> transfer cash
                     </h1>
                 </div>
@@ -92,6 +131,7 @@ function SignUp() {
                         name="email"
                         placeholder="Email"
                         label="Email"
+                        type="email"
                         onChange={handleInputChange}
                         value={data.email}
                     />
@@ -99,6 +139,7 @@ function SignUp() {
                         name="password"
                         placeholder="Password"
                         label="Password"
+                        type="password"
                         onChange={handleInputChange}
                         value={data.password}
                     />
@@ -106,10 +147,22 @@ function SignUp() {
                         name="pswrepeat"
                         placeholder="Repeat password"
                         label="Repeat password"
+                        type="password"
                         onChange={handleInputChange}
                         value={data.pswrepeat}
                     />
-                    <button type="submit" className="btn primary">
+                    <button
+                        type="submit"
+                        className="btn primary"
+                        disabled={
+                            !(
+                                !!data.email &&
+                                !!data.first_name &&
+                                !!data.last_name &&
+                                !!data.password &&
+                                !!data.pswrepeat
+                            )
+                        }>
                         Create account
                     </button>
                 </form>

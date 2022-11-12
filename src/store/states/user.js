@@ -2,10 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 import { clearLocalStorage, persistLocalStorage } from '../../utilities/localStorage.utility';
 
 export const EmptyUserState = {
+    account_id: null,
+    email: '',
+    isBlocked: false,
+    money: '',
     name: '',
-    id_user: '1csdqw',
-    rol: '12312',
-    token: '123'
+    points: null,
+    roleId: null,
+    token: '',
+    user_id: null
 };
 
 export const UserKey = 'user_wallet';

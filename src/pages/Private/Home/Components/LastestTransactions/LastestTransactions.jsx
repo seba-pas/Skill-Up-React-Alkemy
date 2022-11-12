@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from 'react';
+// hooks
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import { ContentLastestTransactions } from './LastestTransactions.styles';
+import { useDispatch } from 'react-redux';
+import { updatePage } from '../../../../../store/states/page';
+// utils
 import { PRIVATE } from '../../../../../router/PathUrl';
+import { formatDate } from '../../../../../utilities/formatDate';
+// services
+import { useGetTransactionsQuery } from '../../../../../services/dataApi';
+
+import { ContentLastestTransactions } from './LastestTransactions.styles';
 
 function LastestTransactions() {
-    const token = localStorage.getItem('token');
-    const [data, setData] = useState();
+    const { data, isLoading } = useGetTransactionsQuery();
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        axios
-            .get('http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/transactions', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then((res) => {
-                setData(res.data.data);
-            })
-            .catch((err) => {
-                Swal.fire('', err, 'error');
-            });
-    }, []);
-    function isBill(value) {
-        if (value < 0) {
-            return 'red';
+        if (isLoading) {
+            dispatch(updatePage({ isLoading: true }));
+        } else {
+            dispatch(updatePage({ isLoading: false }));
         }
-        return 'black';
-    }
+    }, [isLoading]);
+
+    const isBill = (type) => {
+        let className;
+        if (type.toLowerCase() === 'payment') {
+            className = 'c-danger';
+        }
+        if (type.toLowerCase() === 'topup') {
+            className = 'c-default';
+        }
+        return className;
+    };
 
     return (
         <ContentLastestTransactions>
@@ -37,32 +42,25 @@ function LastestTransactions() {
                     <h5 className="label">SEE ALL {'>'}</h5>
                 </Link>
             </div>
-            {data
-                ? data.map((oneTransaction, index) => {
-                      if (index < 5) {
-                          return (
-                              <div className="list-cards" key={oneTransaction.id}>
-                                  <div className="card d-flex between">
-                                      <div className="article">
-                                          <h4 className="text">{oneTransaction.concept} </h4>
-                                          <span className="date t-light">
-                                              {oneTransaction.date}{' '}
-                                          </span>
-                                      </div>
-                                      <div className="amount">
-                                          <h4
-                                              className="text"
-                                              style={{ color: isBill(oneTransaction.amount) }}>
-                                              {oneTransaction.amount}
-                                          </h4>
-                                      </div>
-                                  </div>
-                              </div>
-                          );
-                      }
-                      return '';
-                  })
-                : ''}
+            {data ? (
+                data.data.map((transaction) => (
+                    <div className="list-cards" key={transaction.id}>
+                        <div className="card d-flex between">
+                            <div className="article">
+                                <h4 className="text">{transaction.concept} </h4>
+                                <span className="date t-light">{formatDate(transaction.date)}</span>
+                            </div>
+                            <div className="amount">
+                                <h4 className={`text ${isBill(transaction.type)} `}>
+                                    $ {transaction.amount}
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <span className="t-light d-block t-center">No transactions</span>
+            )}
         </ContentLastestTransactions>
     );
 }

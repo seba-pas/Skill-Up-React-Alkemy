@@ -52,7 +52,7 @@ function Bills() {
     return (
         <ContentBills>
             <div className="top d-flex between">
-                <h1 className="label"> Cargar un gasto</h1>
+                <h4 className="f-18"> Cargar un gasto</h4>
             </div>
 
             <div className="card">
@@ -72,7 +72,7 @@ function Bills() {
                         value={concept}
                         onChange={(e) => setConcept(e.target.value)}
                     />
-                    <button type="submit" className="btn billSubmit" onClick={handleSubmit}>
+                    <button type="submit" className="btn primary" onClick={handleSubmit}>
                         Cargar gasto
                     </button>
                 </form>

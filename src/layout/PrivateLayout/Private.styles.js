@@ -5,5 +5,5 @@ export const ContentPrivateLayout = styled.div`
     min-height: 80vh;
 `;
 export const ContentOutlet = styled.div`
-    padding: ${theme.padding.layoutMobile};
+    /* padding: ${theme.padding.layoutMobile}; */
 `;
