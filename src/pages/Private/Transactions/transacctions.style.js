@@ -5,7 +5,8 @@ export const ContentTransactions = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20%;
+    margin-top: 10%;
+    gap: 2rem;
     .transcontainer {
         display: flex;
         flex-direction: column;
@@ -18,6 +19,7 @@ export const ContentTransactions = styled.section`
         flex-direction: row;
         align-items: center;
         justify-self: center;
+        gap: 2rem;
         padding: 16px;
         margin-bottom: 20px;
         width: 70vw;
