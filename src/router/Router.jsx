@@ -1,7 +1,10 @@
 // hooks
 import { Suspense, lazy } from 'react';
 import { Route, BrowserRouter, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import AuthGuard from './AuthGuard';
+// componets
+import Loader from '../components/Loader./Loader';
 // pages
 import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
@@ -20,6 +23,8 @@ const Contact = lazy(() => import('../pages/Private/Contact/Contact'));
 const Balance = lazy(() => import('../pages/Private/Balance/Balance'));
 
 function Router() {
+    const PageState = useSelector((store) => store.page);
+
     return (
         <Suspense fallback={<h3>loading</h3>}>
             <BrowserRouter>
@@ -41,6 +46,7 @@ function Router() {
                         </Route>
                     </Route>
                 </RoutesWithNotFound>
+                <Loader loading={PageState.isLoading} />
             </BrowserRouter>
         </Suspense>
     );

@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const ContentSignIn = styled.div`
+export const ContentSignIn = styled.div.attrs({
+    classList: 'flex center'
+})`
+    flex-direction: center;
     height: 70vh;
     .contenedor-imagen {
         text-align: center;

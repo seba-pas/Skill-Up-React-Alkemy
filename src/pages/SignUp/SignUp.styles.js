@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const ContentSignUp = styled.div`
+export const ContentSignUp = styled.div.attrs({
+    className: 'flex center'
+})`
+    flex-direction: column;
     min-height: 80vh;
     .contenedor-imagen {
         text-align: center;

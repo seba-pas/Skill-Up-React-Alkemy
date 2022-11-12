@@ -53,15 +53,4 @@ export const ContentModal = styled.div`
             }
         }
     }
-
-    .overlay {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: ${({ theme }) => theme.colors.overlay};
-        position: absolute;
-        width: 100vw;
-        height: 100vh;
-    }
 `;

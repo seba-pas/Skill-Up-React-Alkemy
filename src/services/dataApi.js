@@ -1,19 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { UserKey } from '../store/states/user';
+
 export const dataApi = createApi({
     reducerPaths: 'apiSlice',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/',
         prepareHeaders: (headers) => {
-            const token = localStorage.getItem('token');
-            // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJJZCI6MTU3Mywicm9sZUlkIjoxfSwiaWF0IjoxNjY4MDkyODc1LCJleHAiOjE2NjgxNzkyNzV9.Sy9szNu8CmYVXhx8teFlHizS3JrRg5rTwW3uomVMQIM';
-            /* 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
-            eyJkYXRhIjp7InVzZXJJZCI6Mjg3LCJyb2xlSWQiOjF9LCJpYXQiOjE2Njc2MDY4NjgsImV4cCI6MTY2NzY5MzI2OH0.
-            x5cfUC0LyhC5Cz0qMoSuSi_Uf9M4DVHPzEfLo-XDAsg';
-            este token devolvia error ahi puse arriba el que corresponde al usuario grupo3@alkemy.com contraseña 123qwe.
-            ACLARACION: el token se vence y hay que ir cambiandolo mientras este hardcodeado como ahora */
+            const token = JSON.parse(localStorage.getItem(UserKey));
 
-            headers.set('authorization', `Bearer ${token}`);
+            headers.set('authorization', `Bearer ${token.token}`);
 
             return headers;
         }
