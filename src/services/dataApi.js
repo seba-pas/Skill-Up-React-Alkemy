@@ -1,17 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { UserKey } from '../store/states/user';
+// import { UserKey } from '../store/states/user';
 
 export const dataApi = createApi({
     reducerPaths: 'apiSlice',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
-            const token = JSON.parse(localStorage.getItem(UserKey));
-            console.log(token);
-            headers.set('authorization', `Bearer ${token.token}`);
+            const user = JSON.parse(localStorage.getItem('user_wallet'));
 
-            return headers;
+            const { token } = user;
+
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`);
+
+                return headers;
+            }
+
+            return null;
         }
     }),
     endpoints: (builder) => ({
@@ -21,29 +27,25 @@ export const dataApi = createApi({
         getUser: builder.query({
             query: (id) => `/users/${id}`
         }),
-        getAccounts: builder.query({
-            query: () => '/accounts'
-        }),
-        getUserAccounts: builder.query({
+        // getAccounts: builder.query({
+        //     query: () => '/accounts'
+        // }),
+        getAccount: builder.query({
             query: () => '/accounts/me'
         }),
-        getAccount: builder.query({
-            query: (id) => `/accounts/${id}`
-        }),
         getTransactions: builder.query({
-            query: () => '/transactions'
+            query: (page) => `/transactions/?page=${page}`
         }),
         getTransaction: builder.query({
             query: (id) => `/transactions/${id}`
         }),
         newAccount: builder.mutation({
-            query: ({ money, userId }) => ({
+            query: () => ({
                 url: '/accounts',
                 method: 'POST',
                 body: {
-                    money,
-                    isBlocked: 'false',
-                    userId
+                    money: 150,
+                    isBlocked: 'false'
                 }
             })
         }),
@@ -90,7 +92,7 @@ export const dataApi = createApi({
 export const {
     useGetMeQuery,
     useGetUserQuery,
-    useGetAccounts,
+    // useGetAccountsQuery,
     useGetAccountQuery,
     useGetTransactionsQuery,
     useGetTransactionQuery,
