@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 
-import { ContentModal } from './Modal.styles';
+import { ContentModal } from './ModalLayout.styles';
 import IconClose from '../../assets/icons/close.svg';
 
 function ModalLayout({ children, onClose, show }) {
