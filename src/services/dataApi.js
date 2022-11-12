@@ -7,7 +7,9 @@ export const dataApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
-            const token = localStorage.getItem('token');
+            const user = JSON.parse(localStorage.getItem('user_wallet'));
+
+            const { token } = user;
 
             if (token) {
                 headers.set('authorization', `Bearer ${token}`);
@@ -25,9 +27,9 @@ export const dataApi = createApi({
         getUser: builder.query({
             query: (id) => `/users/${id}`
         }),
-        getAccounts: builder.query({
-            query: () => '/accounts'
-        }),
+        // getAccounts: builder.query({
+        //     query: () => '/accounts'
+        // }),
         getAccount: builder.query({
             query: () => '/accounts/me'
         }),
@@ -90,7 +92,7 @@ export const dataApi = createApi({
 export const {
     useGetMeQuery,
     useGetUserQuery,
-    useGetAccountsQuery,
+    // useGetAccountsQuery,
     useGetAccountQuery,
     useGetTransactionsQuery,
     useGetTransactionQuery,

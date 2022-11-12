@@ -7,9 +7,9 @@ function TopUpBalance() {
     const [amount, setAmount] = useState(0);
     const [concept, setConcept] = useState('');
     const [accountId, setAccountId] = useState('');
-    const [newDeposit, result] = useDepositCashMutation();
+    const [newDeposit] = useDepositCashMutation();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
         if (amount <= 0) {
@@ -24,17 +24,21 @@ function TopUpBalance() {
             Swal.fire('', 'Por favor ingrese un concepto de carga', 'error');
             return;
         }
-        try {
-            await newDeposit({ id: accountId, concept, amount });
-
-            if (result.status === 'rejected') {
-                Swal.fire('', 'La cuenta no existe', 'error');
-                return;
-            }
-            Swal.fire('', 'Saldo cargado exitosamente', 'success');
-        } catch (error) {
-            Swal.fire('', 'No pudo realizarse la carga', 'error');
-        }
+        newDeposit({ id: accountId, concept, amount })
+            .unwrap()
+            .then((fulfilled) => {
+                switch (fulfilled.status) {
+                    case 404:
+                        Swal.fire('', fulfilled.error, 'error');
+                        break;
+                    case 200:
+                        Swal.fire('', fulfilled.error, 'success');
+                        break;
+                    default:
+                        break;
+                }
+            })
+            .catch((rejected) => Swal.fire('', rejected.error, 'error'));
     }
 
     return (
