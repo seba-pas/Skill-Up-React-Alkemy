@@ -1,7 +1,20 @@
 import React from 'react';
+import { useGetAccountQuery } from '../../../services/dataApi';
 import { ContentTopUpBalance } from './TopUpBalance.style';
 
 function TopUpBalance() {
+    const { data, isLoading, isError, error } = useGetAccountQuery();
+
+    if (isLoading) {
+        return <p>Loading</p>;
+    }
+
+    if (isError) {
+        return <p>{error}</p>;
+    }
+
+    console.log(data);
+
     return (
         <ContentTopUpBalance>
             <span>

@@ -48,7 +48,7 @@ export const dataApi = createApi({
                 method: 'POST',
                 body: {
                     // check this line
-                    type: 'topup' || 'payment',
+                    type: 'topup',
                     concept,
                     amount
                 }
@@ -60,7 +60,7 @@ export const dataApi = createApi({
                 method: 'POST',
                 body: {
                     // check this line
-                    type: 'topup' || 'payment',
+                    type: 'payment',
                     concept,
                     amount: amount * -1
                 }

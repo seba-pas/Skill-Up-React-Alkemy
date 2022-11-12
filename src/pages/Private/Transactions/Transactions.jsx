@@ -1,44 +1,69 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import { useGetTransactionsQuery } from '../../../services/dataApi';
 import { ContentTransactions } from './transacctions.style';
 
 export default function Transacciones() {
-    const { data, isLoading, isError, error } = useGetTransactionsQuery();
+    const [page, setPage] = useState(1);
+
+    const { data, isLoading, isError, error } = useGetTransactionsQuery(page);
+
+    if (isLoading) {
+        return <p>Loading</p>;
+    }
+
+    const transactions = data.data;
 
     console.log(data, isLoading, isError, error);
 
-    const dataA = [
-        {
-            id: 1,
-            detail: 'Shopping',
-            date: '20/10/2022',
-            price: 85
-        },
-        {
-            id: 2,
-            detail: 'Ticket',
-            date: '20/10/2022',
-            price: 85
-        },
-        {
-            id: 3,
-            detail: 'Algo',
-            date: '20/10/2022',
-            price: 85
-        }
-    ];
     return (
-        <ContentTransactions className="transcontainer">
-            <h2>Transactions</h2>
-            {dataA.map((e) => {
-                return (
-                    <div className="transcard" key={e.id}>
-                        <span className="detail">{e.detail}</span>
-                        <span className="date">{e.date}</span>
-                        <span className="price">${e.price}</span>
-                    </div>
-                );
-            })}
-        </ContentTransactions>
+        <>
+            <ContentTransactions className="transcontainer">
+                <h2>Transactions</h2>
+                {transactions.map((e) => {
+                    const mydate = new Date(e.date);
+                    const year = mydate.getFullYear();
+                    const month = mydate.getMonth();
+                    const date = mydate.getDate();
+
+                    return (
+                        <div className="transcard" key={e.id}>
+                            <span className="detail">{e.concept}</span>
+                            <span className="date">
+                                {year} - {month} - {date}
+                            </span>
+                            <span className="price">${e.amount}</span>
+                        </div>
+                    );
+                })}
+            </ContentTransactions>
+            <ButtonGroup
+                variant="contained"
+                aria-label="primary button group"
+                sx={{ display: 'flex', justifyContent: 'center', boxShadow: 'none', gap: '5px' }}>
+                <Button
+                    size="large"
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}
+                    disabled={!data.previousPage}
+                    onClick={() =>
+                        setPage((prevState) => (data.previousPage ? prevState - 1 : prevState))
+                    }>
+                    Prev
+                </Button>
+                <Button
+                    size="large"
+                    sx={{
+                        backgroundColor: '#133fdb',
+                        borderColor: 'transparent'
+                    }}
+                    disabled={!data.nextPage}
+                    onClick={() =>
+                        setPage((prevState) => (data.nextPage ? prevState + 1 : prevState))
+                    }>
+                    Next
+                </Button>
+            </ButtonGroup>
+        </>
     );
 }
