@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import AuthGuard from './AuthGuard';
 // componets
-import Loader from '../components/Loader./Loader';
+import Loader from '../components/Loader/Loader';
 // pages
 import RoutesWithNotFound from './RoutesWithNotFound';
 // utils
