@@ -6,10 +6,9 @@ export const PUBLIC = {
 export const PRIVATE = {
     root: '/app',
     home: 'home',
-    topUpBalance: 'top-up-balance',
-    balance: 'balance',
+    topUp: 'top-up',
+    payment: 'payment',
     profile: 'profile',
-    bills: 'bills',
     contact: 'contact',
     transactions: 'transactions'
 };

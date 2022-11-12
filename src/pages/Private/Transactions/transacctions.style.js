@@ -5,22 +5,19 @@ export const ContentTransactions = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20%;
-    .transcontainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
+    margin-top: 10%;
+    h2 {
+        margin-bottom: 3rem;
     }
-
     .transcard {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-self: center;
+        gap: 2rem;
         padding: 16px;
-        margin-bottom: 20px;
-        width: 70vw;
+        margin-bottom: 10px;
+        width: fit-content;
         height: 50px;
         background: #ffffff;
         border-radius: 16px;
@@ -77,5 +74,12 @@ export const ContentTransactions = styled.section`
         display: flex;
         flex-direction: column;
         margin-bottom: 5rem;
+    }
+    @media screen and (max-width: 426px) {
+        .date,
+        .price,
+        .detail {
+            font-size: 1rem;
+        }
     }
 `;

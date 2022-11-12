@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 
 export const ContentSignUp = styled.div.attrs({
-    className: 'flex center'
+    className: 'd-flex center'
 })`
     flex-direction: column;
-    min-height: 80vh;
+    gap: 30px;
+    min-height: 100vh;
+    padding: ${({ theme }) => theme.padding.layoutMobile};
+
+    @media ${({ theme }) => theme.breakpoints.tablet} {
+        padding: 0;
+    }
     .contenedor-imagen {
         text-align: center;
         margin: 20px 0 0 0;

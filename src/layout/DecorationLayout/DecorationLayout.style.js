@@ -24,4 +24,15 @@ export const ContentAdornos = styled.section`
         background: rgba(47, 203, 252, 0.3);
         z-index: -1;
     }
+
+    @media ${({ theme }) => theme.breakpoints.tablet} {
+        &:before {
+            width: 20vw;
+            height: 20vw;
+        }
+        &:after {
+            width: 20vw;
+            height: 20vw;
+        }
+    }
 `;

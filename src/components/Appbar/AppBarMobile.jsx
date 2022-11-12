@@ -12,10 +12,10 @@ import { PRIVATE } from '../../router/PathUrl';
 function AppBarMobile() {
     return (
         <ContentAppBarMobile className="mobile-container">
-            <Link className="NavButton" to={PRIVATE.topUpBalance}>
+            <Link className="NavButton" to={PRIVATE.topUp}>
                 <CardSvg />
             </Link>
-            <Link className="NavButton" to={PRIVATE.transactions}>
+            <Link className="NavButton" to={PRIVATE.payment}>
                 <TransferSvg />
             </Link>
             <Link className="centerNavButton" to={PRIVATE.home}>
@@ -23,7 +23,7 @@ function AppBarMobile() {
                     <CenterNavButtonSvg />
                 </div>
             </Link>
-            <Link className="NavButton" to={PRIVATE.balance}>
+            <Link className="NavButton" to={PRIVATE.transactions}>
                 <ChartSvg />
             </Link>
             <Link className="NavButton" to={PRIVATE.profile}>

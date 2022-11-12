@@ -33,15 +33,34 @@ export const ContentAppBarMobile = styled.div.attrs({
 
 export const ContentAppBar = styled.div`
     display: none;
+    justify-content: space-between;
+    padding: 10px 40px;
+    background: ${({ theme }) => theme.colors.primary};
 
-    button {
-        color: white !important;
+    .nav-menu {
+        ul {
+            gap: 20px;
+        }
+        li {
+            a {
+                transition: ${({ theme }) => theme.transition.default};
+                color: ${({ theme }) => theme.c_text.white};
+                &:hover {
+                    color: ${({ theme }) => theme.c_text.gray};
+                }
+            }
+        }
     }
-    .navBarDesktop {
-        z-index: 100;
+    .signout {
+        transition: ${({ theme }) => theme.transition.default};
+        cursor: pointer;
+        &:hover {
+            color: ${({ theme }) => theme.c_text.gray};
+        }
     }
+
     @media ${({ theme }) => theme.breakpoints.tablet} {
-        display: block;
+        display: flex;
     }
 `;
 

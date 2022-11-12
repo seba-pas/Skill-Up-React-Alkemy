@@ -108,7 +108,7 @@ function SignUp() {
             <ContentSignUp>
                 <div className="contenedor-imagen">
                     <h1 className="t-center f-24">
-                        Welcome to <br /> transfer cash
+                        Welcome to <br /> Alkemy Bank
                     </h1>
                 </div>
 

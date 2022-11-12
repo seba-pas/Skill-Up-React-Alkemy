@@ -8,7 +8,6 @@ export const dataApi = createApi({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
             const token = JSON.parse(localStorage.getItem(UserKey));
-            console.log(token);
             headers.set('authorization', `Bearer ${token.token}`);
 
             return headers;

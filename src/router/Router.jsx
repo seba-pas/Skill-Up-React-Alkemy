@@ -15,18 +15,17 @@ const SignUp = lazy(() => import('../pages/SignUp/SignUp'));
 
 const PrivateLayout = lazy(() => import('../layout/PrivateLayout/PrivateLayout'));
 const Home = lazy(() => import('../pages/Private/Home/Home'));
-const TopUpBalance = lazy(() => import('../pages/Private/TopUpBalance/TopUpBalance'));
+const TopUp = lazy(() => import('../pages/Private/TopUp/TopUp'));
 const Transactions = lazy(() => import('../pages/Private/Transactions/Transactions'));
 const Profile = lazy(() => import('../pages/Private/Profile/Profile'));
-const Bills = lazy(() => import('../pages/Private/Bills/Bills'));
 const Contact = lazy(() => import('../pages/Private/Contact/Contact'));
-const Balance = lazy(() => import('../pages/Private/Balance/Balance'));
+const Payment = lazy(() => import('../pages/Private/Payment/Payment'));
 
 function Router() {
     const PageState = useSelector((store) => store.page);
 
     return (
-        <Suspense fallback={<h3>loading</h3>}>
+        <Suspense fallback={<Loader loading />}>
             <BrowserRouter>
                 <RoutesWithNotFound>
                     <Route path="/" element={<Navigate to={`${PRIVATE.root}/${PRIVATE.home}`} />} />
@@ -37,10 +36,9 @@ function Router() {
                     <Route element={<AuthGuard />}>
                         <Route path={`${PRIVATE.root}`} element={<PrivateLayout />}>
                             <Route path={PRIVATE.home} element={<Home />} />
-                            <Route path={PRIVATE.topUpBalance} element={<TopUpBalance />} />
-                            <Route path={PRIVATE.balance} element={<Balance />} />
+                            <Route path={PRIVATE.topUp} element={<TopUp />} />
+                            <Route path={PRIVATE.payment} element={<Payment />} />
                             <Route path={PRIVATE.transactions} element={<Transactions />} />
-                            <Route path={PRIVATE.bills} element={<Bills />} />
                             <Route path={PRIVATE.profile} element={<Profile />} />
                             <Route path={PRIVATE.contact} element={<Contact />} />
                         </Route>

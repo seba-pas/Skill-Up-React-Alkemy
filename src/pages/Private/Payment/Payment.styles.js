@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ContentBills = styled.section.attrs({
+export const ContentBalance = styled.section.attrs({
     className: 'd-flex center'
 })`
     font-weight: 300;

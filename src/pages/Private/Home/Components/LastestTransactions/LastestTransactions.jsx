@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 // hooks
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -42,22 +43,29 @@ function LastestTransactions() {
                     <h5 className="label">SEE ALL {'>'}</h5>
                 </Link>
             </div>
-            {data ? (
-                data.data.map((transaction) => (
-                    <div className="list-cards" key={transaction.id}>
-                        <div className="card d-flex between">
-                            <div className="article">
-                                <h4 className="text">{transaction.concept} </h4>
-                                <span className="date t-light">{formatDate(transaction.date)}</span>
+            {!data && isLoading ? null : data.data.length !== 0 && !isLoading ? (
+                data.data.map((transaction, i) => {
+                    if (i < 5) {
+                        return (
+                            <div className="list-cards" key={transaction.id}>
+                                <div className="card d-flex between">
+                                    <div className="article">
+                                        <h4 className="text">{transaction.concept} </h4>
+                                        <span className="date t-light">
+                                            {formatDate(transaction.date)}
+                                        </span>
+                                    </div>
+                                    <div className="amount">
+                                        <h4 className={`text ${isBill(transaction.type)} `}>
+                                            $ {transaction.amount}
+                                        </h4>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="amount">
-                                <h4 className={`text ${isBill(transaction.type)} `}>
-                                    $ {transaction.amount}
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                ))
+                        );
+                    }
+                    return null;
+                })
             ) : (
                 <span className="t-light d-block t-center">No transactions</span>
             )}

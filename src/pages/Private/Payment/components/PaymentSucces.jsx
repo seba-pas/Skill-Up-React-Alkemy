@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-export default function billSucces(goBack) {
+export default function paymentSucces(goBack) {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn billSubmit',

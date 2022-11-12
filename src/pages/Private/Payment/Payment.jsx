@@ -1,13 +1,16 @@
+// hooks
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormLabel, Input, TextField } from '@mui/material';
 import Swal from 'sweetalert2';
-import { ContentBills } from './Bills.styles';
+// compontents
+import { FormLabel, Input, TextField } from '@mui/material';
+import balanceSucces from './components/PaymentSucces';
+// utils
 import { useNewExpenseMutation } from '../../../services/dataApi';
-import billSucces from './components/BillSucces';
-// import { PRIVATE } from '../../../router/PathUrl';
 
-function Bills() {
+import { ContentBalance } from './Payment.styles';
+
+function Balance() {
     const navigate = useNavigate();
     const [amount, setAmount] = useState('');
     const [concept, setConcept] = useState('');
@@ -27,7 +30,7 @@ function Bills() {
         if (isSuccess) {
             setAmount('');
             setConcept('');
-            billSucces(goBack);
+            balanceSucces(goBack);
         }
     }, [isSuccess]);
     useEffect(() => {
@@ -50,7 +53,7 @@ function Bills() {
     }
 
     return (
-        <ContentBills>
+        <ContentBalance>
             <div className="top d-flex between">
                 <h4 className="f-18"> Cargar un gasto</h4>
             </div>
@@ -77,8 +80,8 @@ function Bills() {
                     </button>
                 </form>
             </div>
-        </ContentBills>
+        </ContentBalance>
     );
 }
 
-export default Bills;
+export default Balance;
