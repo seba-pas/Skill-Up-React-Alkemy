@@ -5,10 +5,10 @@ import { UserKey } from '../store/states/user';
 export const dataApi = createApi({
     reducerPaths: 'apiSlice',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/',
+        baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
             const token = JSON.parse(localStorage.getItem(UserKey));
-
+            console.log(token);
             headers.set('authorization', `Bearer ${token.token}`);
 
             return headers;

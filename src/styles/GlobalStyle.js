@@ -28,6 +28,9 @@ export const GlobalStyle = createGlobalStyle`
     .d-flex {
         display: flex;
     }
+    .d-block {
+        display: block;
+    }
     .d-flex.center {
         justify-content: center;
         align-items: center;
@@ -77,6 +80,12 @@ export const GlobalStyle = createGlobalStyle`
     }
     .c-primary {
         color: ${({ theme }) => theme.colors.primary};
+    }
+    .c-default {
+        color: ${({ theme }) => theme.c_text.principal};
+    }
+    .c-danger {
+        color: ${({ theme }) => theme.alerts.error};
     }
 
 
