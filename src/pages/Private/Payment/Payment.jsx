@@ -24,6 +24,7 @@ function Balance() {
     useEffect(() => {
         if (amount < 0) {
             Swal.fire('', 'Debe ingresar un número positivo', 'error');
+            setAmount('');
         }
         if (amount !== '') {
             setAmount(Number(amount));
@@ -76,7 +77,9 @@ function Balance() {
                     <TextField
                         aria-label="With textarea"
                         value={concept}
+                        placeholder="Payment concept"
                         onChange={(e) => setConcept(e.target.value)}
+                        inputProps={{ maxLength: 20, type: 'text', minLength: 4 }}
                     />
                     <button type="submit" className="btn primary" onClick={handleSubmit}>
                         Cargar gasto
