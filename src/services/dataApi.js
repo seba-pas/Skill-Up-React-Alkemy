@@ -18,11 +18,8 @@ export const dataApi = createApi({
         getMe: builder.query({
             query: () => '/auth/me'
         }),
-        getUser: builder.query({
-            query: (id) => `/users/${id}`
-        }),
-        // getAccounts: builder.query({
-        //     query: () => '/accounts'
+        // getUser: builder.query({
+        //     query: (id) => `/users/${id}`
         // }),
         getAccount: builder.query({
             query: () => '/accounts/me',
@@ -83,19 +80,38 @@ export const dataApi = createApi({
                     toAccountId
                 }
             })
+        }),
+        editTransaction: builder.mutation({
+            query: ({ id, concept }) => ({
+                url: `/transactions/${id}`,
+                method: 'PUT',
+                body: {
+                    concept
+                }
+            })
+        }),
+        resetPassword: builder.mutation({
+            query: ({ id, password }) => ({
+                url: `/users/resetPassword/${id}`,
+                method: 'PATCH',
+                body: {
+                    password
+                }
+            })
         })
     })
 });
 
 export const {
     useGetMeQuery,
-    useGetUserQuery,
-    // useGetAccountsQuery,
+    // useGetUserQuery,
     useGetAccountQuery,
     useGetTransactionsQuery,
     useGetTransactionQuery,
     useNewAccountMutation,
     useDepositCashMutation,
     useNewExpenseMutation,
-    useNewTransactionMutation
+    useNewTransactionMutation,
+    useEditTransactionMutation,
+    useResetPasswordMutation
 } = dataApi;
