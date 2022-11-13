@@ -1,30 +1,29 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import { FormLabel, Input, TextField } from '@mui/material';
+import { useSelector } from 'react-redux';
 import { ContentTopUpBalance } from './TopUp.style';
 import { useDepositCashMutation } from '../../../services/dataApi.js';
 
 function TopUp() {
     const [amount, setAmount] = useState(0);
     const [concept, setConcept] = useState('');
-    const [accountId, setAccountId] = useState('');
     const [newDeposit] = useDepositCashMutation();
+    const UserState = useSelector((store) => store.user);
 
     function handleSubmit(e) {
         e.preventDefault();
+        const id = UserState.account_id;
 
         if (amount <= 0) {
             Swal.fire('', 'Debe ingresar un número positivo', 'error');
-            return;
-        }
-        if (!accountId) {
-            Swal.fire('', 'Por favor ingrese un numero de cuenta', 'error');
             return;
         }
         if (!concept) {
             Swal.fire('', 'Por favor ingrese un concepto de carga', 'error');
             return;
         }
-        newDeposit({ id: accountId, concept, amount })
+        newDeposit({ id, concept, amount })
             .unwrap()
             .then((fulfilled) => {
                 switch (fulfilled.status) {
@@ -46,17 +45,11 @@ function TopUp() {
             <div className="top d-flex between">
                 <h4 className="f-24">Top up</h4>
             </div>
-            <div>
-                <form>
-                    <input
-                        type="number"
-                        name="accountId"
-                        id="accountId"
-                        value={accountId}
-                        placeholder="ingrese el id de la cuenta"
-                        onChange={(e) => setAccountId(e.target.value)}
-                    />
-                    <input
+            <div className="card">
+                <form className="d-flex-column billsForm">
+                    {' '}
+                    <FormLabel>Monto:</FormLabel>
+                    <Input
                         type="number"
                         name="amount"
                         id="amount"
@@ -64,18 +57,16 @@ function TopUp() {
                         placeholder="$ 0.00"
                         onChange={(e) => setAmount(e.target.value)}
                     />
-                    <input
-                        type="text"
-                        name="concept"
-                        id="concept"
+                    <FormLabel>Concepto:</FormLabel>
+                    <TextField
+                        aria-label="With textarea"
                         value={concept}
-                        placeholder="Concepto de carga"
                         onChange={(e) => setConcept(e.target.value)}
                     />
+                    <button type="submit" className="btn primary" onClick={handleSubmit}>
+                        Cargar gasto
+                    </button>
                 </form>
-                <button type="submit" onClick={(e) => handleSubmit(e)}>
-                    Cargar Saldo
-                </button>
             </div>
         </ContentTopUpBalance>
     );
