@@ -13,21 +13,21 @@ export const dataApi = createApi({
             return headers;
         }
     }),
+    tagTypes: ['Transactions', 'Money'],
     endpoints: (builder) => ({
         getMe: builder.query({
             query: () => '/auth/me'
         }),
-        getUser: builder.query({
-            query: (id) => `/users/${id}`
-        }),
-        // getAccounts: builder.query({
-        //     query: () => '/accounts'
+        // getUser: builder.query({
+        //     query: (id) => `/users/${id}`
         // }),
         getAccount: builder.query({
-            query: () => '/accounts/me'
+            query: () => '/accounts/me',
+            providesTags: ['Money']
         }),
         getTransactions: builder.query({
-            query: (page) => `/transactions/?page=${page}`
+            query: (page) => `/transactions/?page=${page}`,
+            providesTags: ['Transactions']
         }),
         getTransaction: builder.query({
             query: (id) => `/transactions/${id}`
@@ -51,7 +51,8 @@ export const dataApi = createApi({
                     concept,
                     amount
                 }
-            })
+            }),
+            invalidatesTags: ['Transactions', 'Money']
         }),
         newExpense: builder.mutation({
             query: ({ id, concept, amount }) => ({
@@ -62,7 +63,8 @@ export const dataApi = createApi({
                     concept,
                     amount: amount * -1
                 }
-            })
+            }),
+            invalidatesTags: ['Transactions', 'Money']
         }),
         newTransaction: builder.mutation({
             query: ({ amount, concept, date, accountId, userId, toAccountId }) => ({
@@ -78,19 +80,38 @@ export const dataApi = createApi({
                     toAccountId
                 }
             })
+        }),
+        editTransaction: builder.mutation({
+            query: ({ id, concept }) => ({
+                url: `/transactions/${id}`,
+                method: 'PUT',
+                body: {
+                    concept
+                }
+            })
+        }),
+        resetPassword: builder.mutation({
+            query: ({ id, password }) => ({
+                url: `/users/resetPassword/${id}`,
+                method: 'PATCH',
+                body: {
+                    password
+                }
+            })
         })
     })
 });
 
 export const {
     useGetMeQuery,
-    useGetUserQuery,
-    // useGetAccountsQuery,
+    // useGetUserQuery,
     useGetAccountQuery,
     useGetTransactionsQuery,
     useGetTransactionQuery,
     useNewAccountMutation,
     useDepositCashMutation,
     useNewExpenseMutation,
-    useNewTransactionMutation
+    useNewTransactionMutation,
+    useEditTransactionMutation,
+    useResetPasswordMutation
 } = dataApi;
