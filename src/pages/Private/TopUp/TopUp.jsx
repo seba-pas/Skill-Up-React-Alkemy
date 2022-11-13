@@ -6,10 +6,11 @@ import { ContentTopUpBalance } from './TopUp.style';
 import { useDepositCashMutation } from '../../../services/dataApi.js';
 
 function TopUp() {
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState('');
     const [concept, setConcept] = useState('');
     const [newDeposit] = useDepositCashMutation();
     const UserState = useSelector((store) => store.user);
+    console.log('render top');
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -64,7 +65,7 @@ function TopUp() {
                         onChange={(e) => setConcept(e.target.value)}
                     />
                     <button type="submit" className="btn primary" onClick={handleSubmit}>
-                        Cargar gasto
+                        Depositar
                     </button>
                 </form>
             </div>

@@ -8,7 +8,7 @@ import { useGetTransactionsQuery } from '../../../services/dataApi';
 import { updatePage } from '../../../store/states/page';
 import { ContentTransactions } from './transacctions.style';
 
-export default function Transacciones() {
+export default function Transactions() {
     const dispatch = useDispatch();
     const [page, setPage] = useState(1);
     const { data, isLoading, isError, error, isSuccess } = useGetTransactionsQuery(page);
@@ -17,7 +17,7 @@ export default function Transacciones() {
     useEffect(() => {
         if (isLoading) {
             dispatch(updatePage({ isLoading: true }));
-            content = <p>No transactions</p>;
+            content = null;
         } else {
             dispatch(updatePage({ isLoading: false }));
         }
