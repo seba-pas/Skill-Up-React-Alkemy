@@ -1,5 +1,6 @@
 // hooks
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 // compontents
@@ -15,6 +16,8 @@ function Balance() {
     const [amount, setAmount] = useState('');
     const [concept, setConcept] = useState('');
     const [newExpense, { error, isSuccess, isError }] = useNewExpenseMutation();
+    const UserState = useSelector((store) => store.user);
+
     function goBack() {
         navigate('/');
     }
@@ -44,7 +47,7 @@ function Balance() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const id = 1298; // acá falta la lógica para traer el id de cuenta
+        const id = UserState.account_id;
         if (amount === '') {
             Swal.fire('', 'Debe ingresar un valor', 'error');
             return;

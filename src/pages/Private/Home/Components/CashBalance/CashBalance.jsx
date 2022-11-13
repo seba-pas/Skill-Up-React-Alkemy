@@ -1,12 +1,17 @@
 // hooks
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 // utils
 import { PRIVATE } from '../../../../../router/PathUrl';
 import { ContentCashBalance } from './CashBalanace.styles';
+import { useGetAccountQuery } from '../../../../../services/dataApi';
 
 function CashBalance() {
-    const UserState = useSelector((store) => store.user);
+    const { data, isSuccess } = useGetAccountQuery();
+    let money;
+
+    if (isSuccess) {
+        money = data[0].money;
+    }
 
     return (
         <ContentCashBalance>
@@ -14,7 +19,7 @@ function CashBalance() {
                 <span className="t-white">Saldo Actual</span>
                 <Link to={`${PRIVATE.root}/${PRIVATE.topUp}`}>+ balance</Link>
             </div>
-            <span className="saldo f-28 fw-7 t-white">$ {UserState.money} </span>
+            <span className="saldo f-28 fw-7 t-white">$ {money} </span>
         </ContentCashBalance>
     );
 }

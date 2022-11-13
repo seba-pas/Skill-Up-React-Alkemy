@@ -13,6 +13,7 @@ export const dataApi = createApi({
             return headers;
         }
     }),
+    tagTypes: ['Transactions', 'Money'],
     endpoints: (builder) => ({
         getMe: builder.query({
             query: () => '/auth/me'
@@ -24,10 +25,12 @@ export const dataApi = createApi({
         //     query: () => '/accounts'
         // }),
         getAccount: builder.query({
-            query: () => '/accounts/me'
+            query: () => '/accounts/me',
+            providesTags: ['Money']
         }),
         getTransactions: builder.query({
-            query: (page) => `/transactions/?page=${page}`
+            query: (page) => `/transactions/?page=${page}`,
+            providesTags: ['Transactions']
         }),
         getTransaction: builder.query({
             query: (id) => `/transactions/${id}`
@@ -51,7 +54,8 @@ export const dataApi = createApi({
                     concept,
                     amount
                 }
-            })
+            }),
+            invalidatesTags: ['Transactions', 'Money']
         }),
         newExpense: builder.mutation({
             query: ({ id, concept, amount }) => ({
@@ -62,7 +66,8 @@ export const dataApi = createApi({
                     concept,
                     amount: amount * -1
                 }
-            })
+            }),
+            invalidatesTags: ['Transactions', 'Money']
         }),
         newTransaction: builder.mutation({
             query: ({ amount, concept, date, accountId, userId, toAccountId }) => ({
