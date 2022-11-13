@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { FormLabel, Input, TextField } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -11,14 +11,18 @@ function TopUp() {
     const [newDeposit] = useDepositCashMutation();
     const UserState = useSelector((store) => store.user);
     console.log('render top');
-
+    useEffect(() => {
+        if (amount < 0) {
+            Swal.fire('', 'Debe ingresar un número positivo', 'error');
+            setAmount(0);
+        }
+    }, [amount]);
     function handleSubmit(e) {
         e.preventDefault();
         const id = UserState.account_id;
-
         if (amount <= 0) {
-            Swal.fire('', 'Debe ingresar un número positivo', 'error');
-            return;
+            Swal.fire('', 'Debe ingresar un monto mayor que 0', 'error');
+            setAmount(0);
         }
         if (!concept) {
             Swal.fire('', 'Por favor ingrese un concepto de carga', 'error');
@@ -48,7 +52,6 @@ function TopUp() {
             </div>
             <div className="card">
                 <form className="d-flex-column billsForm">
-                    {' '}
                     <FormLabel>Monto:</FormLabel>
                     <Input
                         type="number"
@@ -63,6 +66,8 @@ function TopUp() {
                         aria-label="With textarea"
                         value={concept}
                         onChange={(e) => setConcept(e.target.value)}
+                        placeholder="Top up concept"
+                        inputProps={{ maxLength: 20, type: 'text', minLength: 4 }}
                     />
                     <button type="submit" className="btn primary" onClick={handleSubmit}>
                         Depositar
