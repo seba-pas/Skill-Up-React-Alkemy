@@ -55,7 +55,7 @@ function Balance() {
     return (
         <ContentBalance>
             <div className="top d-flex between">
-                <h4 className="f-18"> Cargar un gasto</h4>
+                <h4 className="f-24">Payment</h4>
             </div>
 
             <div className="card">

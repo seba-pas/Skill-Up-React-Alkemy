@@ -10,9 +10,4 @@ export const ContentLastestTransactions = styled.div`
             font-size: 1.2rem;
         }
     }
-
-    .article .date {
-        display: block;
-        margin: 8px 0 0 0;
-    }
 `;

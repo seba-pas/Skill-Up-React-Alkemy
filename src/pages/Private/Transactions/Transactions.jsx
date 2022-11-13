@@ -1,93 +1,57 @@
 import { Pagination, Stack } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
+// compontents
+import CardTransaction from '../../../components/CardTransaction/CardTransaction';
+// import Swal from 'sweetalert2';
+import { useGetTransactionsQuery } from '../../../services/dataApi';
 import { updatePage } from '../../../store/states/page';
 import { ContentTransactions } from './transacctions.style';
 
-function Transacciones() {
+export default function Transacciones() {
     const dispatch = useDispatch();
-    const token = localStorage.getItem('token');
-    const [data, setData] = useState([]);
     const [page, setPage] = useState(1);
-    const [disableNB, setDisableNB] = useState();
-    const [disablePB, setDisablePB] = useState();
-    const baseUrl = `http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com/transactions/`;
-    useEffect(() => {
-        dispatch(updatePage({ isLoading: true }));
-        axios
-            .get(baseUrl, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            .then((res) => {
-                setData(res.data.data);
-                if (res.data.nextPage === null) {
-                    setDisableNB(true);
-                } else {
-                    setDisableNB(false);
-                }
-                if (res.data.previousPage === null) {
-                    setDisablePB(true);
-                } else {
-                    setDisablePB(false);
-                }
-                dispatch(updatePage({ isLoading: false }));
-                console.log(res.data);
-            })
-            .catch((err) => {
-                Swal.fire('', err.message, 'error');
-                dispatch(updatePage({ isLoading: false }));
-            });
-        console.log(page);
-    }, [page]);
+    const { data, isLoading, isError, error, isSuccess } = useGetTransactionsQuery(page);
+    let content;
 
-    function isBill(value) {
-        if (value < 0) {
-            return 'red';
+    useEffect(() => {
+        if (isLoading) {
+            dispatch(updatePage({ isLoading: true }));
+            content = <p>No transactions</p>;
+        } else {
+            dispatch(updatePage({ isLoading: false }));
         }
-        return 'black';
-    }
-    function textShortener(value) {
-        if (value !== null) {
-            if (value.length > 15) {
-                return `${value.slice(0, 15)} ...`;
-            }
-            return value;
-        }
-        return '';
-    }
+    }, [isLoading]);
+
     function handlePage(e, value) {
         setPage(value);
     }
+    if (isSuccess) {
+        content = data.data.map((tr) => {
+            return <CardTransaction key={tr.id} transaction={tr} />;
+        });
+    }
+
+    if (isError) {
+        return <p>{error}</p>;
+    }
+
     return (
         <ContentTransactions className="transcontainer">
-            <h2>Transactions</h2>
-            {data.map((tr) => {
-                return (
-                    <div className="transcard" key={tr.id}>
-                        <span className="detail">{textShortener(tr.concept)}</span>
-                        <span className="date">{new Date(tr.date).toLocaleString('es', 'AR')}</span>
-                        <span className="price" style={{ color: isBill(tr.amount) }}>
-                            ${tr.amount}
-                        </span>
-                    </div>
-                );
-            })}
+            <h2 className="f-24">Transactions</h2>
+            {content}
             <Stack>
-                <Pagination
-                    count={page + 1}
-                    page={page}
-                    size="large"
-                    onChange={(e, value) => handlePage(e, value)}
-                    hideNextButton={disableNB}
-                    hidePrevButton={disablePB}
-                />
+                {data && (
+                    <Pagination
+                        count={data.nextPage ? page + 1 : page}
+                        page={page}
+                        size="large"
+                        onChange={(e, value) => handlePage(e, value)}
+                        hideNextButton={data.nextPage === null}
+                        hidePrevButton={data.previousPage === null}
+                    />
+                )}
             </Stack>
         </ContentTransactions>
     );
 }
-
-export default Transacciones;

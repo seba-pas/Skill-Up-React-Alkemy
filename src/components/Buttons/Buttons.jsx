@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useNavigate } from 'react-router-dom';
-import { useNewTransactionMutation } from '../../services/dataApi';
-// import Stack from '@mui/material/Stack';
+import { useGetTransactionsQuery } from '../../services/dataApi';
 import { PRIVATE } from '../../router/PathUrl';
 
-function Buttons() {
-    const [newTransaction] = useNewTransactionMutation();
+export default function Buttons() {
+    const [page, setPage] = useState(1);
+
+    const { data } = useGetTransactionsQuery(page);
+
     const navigate = useNavigate();
     const navigation = (url) => {
         // aca va la funcion para navehgar
         navigate(url);
     };
+
+    console.log(data);
 
     return (
         <div style={{ marginTop: '40px' }}>
@@ -39,26 +43,22 @@ function Buttons() {
             </ButtonGroup>
             <ButtonGroup variant="contained" aria-label="primary button group">
                 <Button
-                    onClick={async () => {
-                        const result = await newTransaction({
-                            accountId: 81,
-                            toAccountId: 44,
-                            userId: 287,
-                            concept: 'anything',
-                            amount: 500
-                        });
-                        console.log(result);
+                    onClick={() => {
+                        setPage((prevState) => (prevState > 1 ? prevState - 1 : prevState));
                     }}
                     size="large"
-                    sx={{
-                        backgroundColor: '#133fdb',
-                        borderColor: 'transparent'
-                    }}>
-                    Press Me
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
+                    PrevPage
+                </Button>
+                <Button
+                    onClick={async () => {
+                        setPage((prevState) => (data.nextPage ? prevState + 1 : prevState));
+                    }}
+                    size="large"
+                    sx={{ backgroundColor: '#133fdb', borderColor: 'transparent' }}>
+                    NextPage
                 </Button>
             </ButtonGroup>
         </div>
     );
 }
-
-export default Buttons;

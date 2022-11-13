@@ -4,16 +4,17 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updatePage } from '../../../../../store/states/page';
+// components
+import CardTransaction from '../../../../../components/CardTransaction/CardTransaction';
 // utils
 import { PRIVATE } from '../../../../../router/PathUrl';
-import { formatDate } from '../../../../../utilities/formatDate';
 // services
 import { useGetTransactionsQuery } from '../../../../../services/dataApi';
 
 import { ContentLastestTransactions } from './LastestTransactions.styles';
 
 function LastestTransactions() {
-    const { data, isLoading } = useGetTransactionsQuery();
+    const { data, isLoading } = useGetTransactionsQuery(1);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -24,17 +25,6 @@ function LastestTransactions() {
         }
     }, [isLoading]);
 
-    const isBill = (type) => {
-        let className;
-        if (type.toLowerCase() === 'payment') {
-            className = 'c-danger';
-        }
-        if (type.toLowerCase() === 'topup') {
-            className = 'c-default';
-        }
-        return className;
-    };
-
     return (
         <ContentLastestTransactions>
             <div className="top d-flex between">
@@ -43,32 +33,20 @@ function LastestTransactions() {
                     <h5 className="label">SEE ALL {'>'}</h5>
                 </Link>
             </div>
-            {!data && isLoading ? null : data.data.length !== 0 && !isLoading ? (
-                data.data.map((transaction, i) => {
-                    if (i < 5) {
-                        return (
-                            <div className="list-cards" key={transaction.id}>
-                                <div className="card d-flex between">
-                                    <div className="article">
-                                        <h4 className="text">{transaction.concept} </h4>
-                                        <span className="date t-light">
-                                            {formatDate(transaction.date)}
-                                        </span>
-                                    </div>
-                                    <div className="amount">
-                                        <h4 className={`text ${isBill(transaction.type)} `}>
-                                            $ {transaction.amount}
-                                        </h4>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    }
-                    return null;
-                })
-            ) : (
-                <span className="t-light d-block t-center">No transactions</span>
-            )}
+            <div className="list-cards">
+                {!data && isLoading ? null : data.data.length !== 0 && !isLoading ? (
+                    data.data.map((transaction, i) => {
+                        if (i < 5) {
+                            return (
+                                <CardTransaction key={transaction.id} transaction={transaction} />
+                            );
+                        }
+                        return null;
+                    })
+                ) : (
+                    <span className="t-light d-block t-center">No transactions</span>
+                )}
+            </div>
         </ContentLastestTransactions>
     );
 }

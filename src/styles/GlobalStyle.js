@@ -142,6 +142,7 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0 auto 15px;
         box-shadow: ${({ theme }) => theme.shadow.box};
         max-width: 450px;
+        width: 100%;
         &last-child {
             margin: 0;
         }

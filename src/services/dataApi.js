@@ -7,9 +7,9 @@ export const dataApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
-            const token = JSON.parse(localStorage.getItem(UserKey));
-            headers.set('authorization', `Bearer ${token.token}`);
+            const { token } = JSON.parse(localStorage.getItem(UserKey));
 
+            headers.set('authorization', `Bearer ${token}`);
             return headers;
         }
     }),
@@ -20,29 +20,25 @@ export const dataApi = createApi({
         getUser: builder.query({
             query: (id) => `/users/${id}`
         }),
-        getAccounts: builder.query({
-            query: () => '/accounts'
-        }),
-        getUserAccounts: builder.query({
+        // getAccounts: builder.query({
+        //     query: () => '/accounts'
+        // }),
+        getAccount: builder.query({
             query: () => '/accounts/me'
         }),
-        getAccount: builder.query({
-            query: (id) => `/accounts/${id}`
-        }),
         getTransactions: builder.query({
-            query: () => '/transactions'
+            query: (page) => `/transactions/?page=${page}`
         }),
         getTransaction: builder.query({
             query: (id) => `/transactions/${id}`
         }),
         newAccount: builder.mutation({
-            query: ({ money, userId }) => ({
+            query: () => ({
                 url: '/accounts',
                 method: 'POST',
                 body: {
-                    money,
-                    isBlocked: 'false',
-                    userId
+                    money: 150,
+                    isBlocked: 'false'
                 }
             })
         }),
@@ -89,7 +85,7 @@ export const dataApi = createApi({
 export const {
     useGetMeQuery,
     useGetUserQuery,
-    useGetAccounts,
+    // useGetAccountsQuery,
     useGetAccountQuery,
     useGetTransactionsQuery,
     useGetTransactionQuery,
