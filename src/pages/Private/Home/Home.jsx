@@ -2,7 +2,7 @@
 import React from 'react';
 // components
 import CashBalance from './Components/CashBalance/CashBalance';
-import AvatarUser from './Components/Avatar/AvatarUser';
+import AvatarUser from '../../../components/AvatarUser/AvatarUser';
 import LastestTransactions from './Components/LastestTransactions/LastestTransactions';
 import DecorationLayout from '../../../layout/DecorationLayout/DecorationLayout';
 // styles

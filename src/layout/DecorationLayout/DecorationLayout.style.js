@@ -27,6 +27,16 @@ export const ContentAdornos = styled.section`
 
     @media ${({ theme }) => theme.breakpoints.tablet} {
         &:before {
+            width: 40vw;
+            height: 40vw;
+        }
+        &:after {
+            width: 40vw;
+            height: 40vw;
+        }
+    }
+    @media ${({ theme }) => theme.breakpoints.laptop} {
+        &:before {
             width: 20vw;
             height: 20vw;
         }

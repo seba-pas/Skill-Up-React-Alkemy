@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const ContentAvartarUser = styled.div.attrs({
-    className: 'd-flex'
+    className: 'd-flex content-avatar'
 })`
-    flex-direction: row;
     position: relative;
+    gap: 15px;
     margin: 0 auto 25px;
     max-width: 500px;
     .avatar-user {
@@ -57,10 +57,10 @@ export const ContentAvartarUser = styled.div.attrs({
     }
 
     .greetings {
-        display: flex;
         flex-direction: column;
-        text-align: left;
-        margin-left: 15px;
-        margin-top: 5px;
+        span {
+            display: block;
+            width: 100%;
+        }
     }
 `;

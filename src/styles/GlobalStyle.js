@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     // global styles
     body {
         background: ${({ theme }) => theme.colors.white};
+        scroll-behavior: smooth; 
     }
 
     @media ${({ theme }) => theme.breakpoints.desktop} {
@@ -18,7 +19,6 @@ export const GlobalStyle = createGlobalStyle`
             border-radius: 5px;
             background: ${({ theme }) => theme.c_text.gray};
         }
-
     }
 
     #notistack-snackbar {
@@ -38,6 +38,13 @@ export const GlobalStyle = createGlobalStyle`
     .d-flex.between {
         justify-content: space-between;
         align-items: center;
+    }
+
+    .gap-2 {
+        gap: 20px
+    }
+    .column {
+        flex-direction: column;
     }
 
     .no-scroll {

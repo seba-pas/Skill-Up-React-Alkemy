@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // hooks
 import { useState } from 'react';
 import axios from 'axios';
@@ -57,14 +56,15 @@ function Login() {
 
             const dataUser = {
                 token: login.data.accessToken,
-                name: `${currentUser.data.first_name} ${currentUser.data.last_name}`,
+                first_name: currentUser.data.first_name,
+                last_name: currentUser.data.last_name,
                 email: currentUser.data.email,
-                roleId: currentUser.data.roleId,
+                role_id: currentUser.data.roleId,
                 points: currentUser.data.points,
                 user_id: currentUser.data.id,
                 account_id: currentAccount.data[0].id,
                 money: currentAccount.data[0].money,
-                isBlocked: currentAccount.data[0].isBlocked
+                is_blocked: currentAccount.data[0].isBlocked
             };
             dispacth(updateUser(dataUser));
             dispacth(updatePage({ isLoading: false }));
