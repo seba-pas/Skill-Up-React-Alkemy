@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-export const ContentBills = styled.section.attrs({
-    className: 'd-flex center'
-})`
-    font-weight: 300;
+export const ContentTopUpBalance = styled.section`
+    display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 3rem;
     .top {
         a .label {

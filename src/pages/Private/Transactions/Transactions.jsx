@@ -1,6 +1,8 @@
 import { Pagination, Stack } from '@mui/material';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+// compontents
+import CardTransaction from '../../../components/CardTransaction/CardTransaction';
 // import Swal from 'sweetalert2';
 import { useGetTransactionsQuery } from '../../../services/dataApi';
 import { updatePage } from '../../../store/states/page';
@@ -12,51 +14,31 @@ export default function Transacciones() {
     const { data, isLoading, isError, error, isSuccess } = useGetTransactionsQuery(page);
     let content;
 
-    if (isLoading) {
-        dispatch(updatePage({ isLoading }));
-        content = <p>No transactions</p>;
-    }
-    dispatch(updatePage({ isLoading }));
-
-    if (isError) {
-        return <p>{error}</p>;
-    }
-
-    function isBill(value) {
-        if (value < 0) {
-            return 'red';
+    useEffect(() => {
+        if (isLoading) {
+            dispatch(updatePage({ isLoading: true }));
+            content = <p>No transactions</p>;
+        } else {
+            dispatch(updatePage({ isLoading: false }));
         }
-        return 'black';
-    }
-    function textShortener(value) {
-        if (value !== null) {
-            if (value.length > 15) {
-                return `${value.slice(0, 15)} ...`;
-            }
-            return value;
-        }
-        return '';
-    }
+    }, [isLoading]);
+
     function handlePage(e, value) {
         setPage(value);
     }
     if (isSuccess) {
         content = data.data.map((tr) => {
-            return (
-                <div className="transcard" key={tr.id}>
-                    <span className="detail">{textShortener(tr.concept)}</span>
-                    <span className="date">{new Date(tr.date).toLocaleString('es', 'AR')}</span>
-                    <span className="price" style={{ color: isBill(tr.amount) }}>
-                        ${tr.amount}
-                    </span>
-                </div>
-            );
+            return <CardTransaction key={tr.id} transaction={tr} />;
         });
+    }
+
+    if (isError) {
+        return <p>{error}</p>;
     }
 
     return (
         <ContentTransactions className="transcontainer">
-            <h2>Transactions</h2>
+            <h2 className="f-24">Transactions</h2>
             {content}
             <Stack>
                 {data && (

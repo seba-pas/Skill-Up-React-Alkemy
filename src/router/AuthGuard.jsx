@@ -5,7 +5,6 @@ import { PUBLIC } from './PathUrl';
 export default function AuthGuard() {
     const userState = useSelector((store) => store.user);
     const existUser = !!userState.token;
-    // const existUser = localStorage.getItem('token') !== null;
 
     return !existUser ? <Navigate replace to={PUBLIC.signin} /> : <Outlet />;
 }

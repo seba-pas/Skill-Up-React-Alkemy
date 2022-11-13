@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import { ContentTopUpBalance } from './TopUpBalance.style';
+import { ContentTopUpBalance } from './TopUp.style';
 import { useDepositCashMutation } from '../../../services/dataApi.js';
 
-function TopUpBalance() {
+function TopUp() {
     const [amount, setAmount] = useState(0);
     const [concept, setConcept] = useState('');
     const [accountId, setAccountId] = useState('');
@@ -43,6 +43,9 @@ function TopUpBalance() {
 
     return (
         <ContentTopUpBalance>
+            <div className="top d-flex between">
+                <h4 className="f-24">Top up</h4>
+            </div>
             <div>
                 <form>
                     <input
@@ -78,4 +81,4 @@ function TopUpBalance() {
     );
 }
 
-export default TopUpBalance;
+export default TopUp;

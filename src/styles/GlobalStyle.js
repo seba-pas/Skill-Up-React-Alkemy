@@ -6,19 +6,19 @@ export const GlobalStyle = createGlobalStyle`
     body {
         background: ${({ theme }) => theme.colors.white};
     }
-    #root {
-        position: relative;
-        min-height: 100vh;
-        @media ${({ theme }) => theme.breakpoints.mobileM}{
-            padding: ${({ theme }) => theme.padding.layoutMobile};
+
+    @media ${({ theme }) => theme.breakpoints.desktop} {
+        body::-webkit-scrollbar {
+            width: 6px;
+            background: ${({ theme }) => theme.c_text.white};;
         }
-        @media ${({ theme }) => theme.breakpoints.tablet}{
-            padding: ${({ theme }) => theme.padding.layoutDesktop};
+
+        body::-webkit-scrollbar-thumb {
+            width: 6px;
+            border-radius: 5px;
+            background: ${({ theme }) => theme.c_text.gray};
         }
-        @media ${({ theme }) => theme.breakpoints.laptop}{
-            padding: ${({ theme }) => theme.padding.layoutDesktop};
-        }
-        
+
     }
 
     #notistack-snackbar {
@@ -139,9 +139,10 @@ export const GlobalStyle = createGlobalStyle`
         background: ${({ theme }) => theme.c_text.white};
         border-radius: ${({ theme }) => theme.rounded.l};
         padding: 16px;
-        margin: 0 0 15px 0;
+        margin: 0 auto 15px;
         box-shadow: ${({ theme }) => theme.shadow.box};
-
+        max-width: 450px;
+        width: 100%;
         &last-child {
             margin: 0;
         }

@@ -1,23 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// import { UserKey } from '../store/states/user';
+import { UserKey } from '../store/states/user';
 
 export const dataApi = createApi({
     reducerPaths: 'apiSlice',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://wallet-main.eba-ccwdurgr.us-east-1.elasticbeanstalk.com',
         prepareHeaders: (headers) => {
-            const user = JSON.parse(localStorage.getItem('user_wallet'));
+            const { token } = JSON.parse(localStorage.getItem(UserKey));
 
-            const { token } = user;
-
-            if (token) {
-                headers.set('authorization', `Bearer ${token}`);
-
-                return headers;
-            }
-
-            return null;
+            headers.set('authorization', `Bearer ${token}`);
+            return headers;
         }
     }),
     endpoints: (builder) => ({

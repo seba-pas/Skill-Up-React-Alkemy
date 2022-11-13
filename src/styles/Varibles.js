@@ -36,9 +36,10 @@ export const theme = {
     padding: {
         input: '9px 15px',
         button: '12px 20px',
-        layoutMobile: '35px 23px 85px',
-        layoutDesktop: '1px 1px 85px',
+        layoutMobile: '35px 23px 35px',
+        layoutDesktop: '55px 23px 35px',
         card: '25px 16px',
+        card_tablet: '35px 26px',
         modal: '30px'
     },
     transition: {

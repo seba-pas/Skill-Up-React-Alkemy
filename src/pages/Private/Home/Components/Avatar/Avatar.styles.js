@@ -5,8 +5,8 @@ export const ContentAvartarUser = styled.div.attrs({
 })`
     flex-direction: row;
     position: relative;
-    margin: 0 0 25px 0;
-
+    margin: 0 auto 25px;
+    max-width: 500px;
     .avatar-user {
         width: 67px;
         height: 67px;

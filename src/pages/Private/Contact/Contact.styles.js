@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const ContentContact = styled.section`
     display: flex;
     flex-direction: column;
-    padding: 4rem;
     justify-content: center;
     align-items: center;
     gap: 3rem;

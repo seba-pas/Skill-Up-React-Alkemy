@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const ContentSignIn = styled.div.attrs({
-    classList: 'flex center'
+    className: 'd-flex center'
 })`
-    flex-direction: center;
-    height: 70vh;
+    flex-direction: column;
+    gap: 30px;
+    height: 100vh;
     .contenedor-imagen {
         text-align: center;
-        margin: 50px 0 0 0;
     }
 
     .form {

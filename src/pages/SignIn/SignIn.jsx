@@ -90,7 +90,7 @@ function Login() {
             <ContentSignIn>
                 <div className="contenedor-imagen">
                     <h2 className="f-24">
-                        Welcome to <br /> transfer cash
+                        Welcome to <br /> Alkemy Bank
                     </h2>
                 </div>
 
