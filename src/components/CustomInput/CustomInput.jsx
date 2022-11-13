@@ -1,6 +1,14 @@
 import { ContentCustomInput } from './CustomInput.styles';
 
-function CustomInput({ name, placeholder, label, type = 'text', onChange, value }) {
+function CustomInput({
+    name,
+    placeholder,
+    label,
+    type = 'text',
+    onChange,
+    value,
+    disabled = false
+}) {
     return (
         <ContentCustomInput>
             <label htmlFor={name}>
@@ -12,6 +20,7 @@ function CustomInput({ name, placeholder, label, type = 'text', onChange, value 
                     onChange={onChange}
                     value={value}
                     placeholder={placeholder}
+                    disabled={disabled}
                 />
                 <span className="label">{label}</span>
             </label>

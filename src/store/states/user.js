@@ -4,11 +4,12 @@ import { clearLocalStorage, persistLocalStorage } from '../../utilities/localSto
 export const EmptyUserState = {
     account_id: null,
     email: '',
-    isBlocked: false,
+    is_locked: false,
     money: '',
-    name: '',
+    first_name: '',
+    last_name: '',
     points: null,
-    roleId: null,
+    role_id: null,
     token: '',
     user_id: null
 };

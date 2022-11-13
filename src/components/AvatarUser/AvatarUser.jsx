@@ -2,7 +2,7 @@
 import { useSelector } from 'react-redux';
 // components
 // assets
-import AVT from '../../../../../assets/img/avt.jpg';
+import AVT from '../../assets/img/avt.jpg';
 
 import { ContentAvartarUser } from './Avatar.styles';
 
@@ -29,9 +29,11 @@ function AvatarUser() {
                 <img alt="sebastian pastorenzi" src={AVT} />
             </div>
 
-            <div className="greetings">
+            <div className="greetings d-flex center">
                 <span className="greet f-14 fw-3">{sayHi()}</span>
-                <span className="avatar_name f-24 fw-5">{UserState.name}</span>
+                <span className="avatar_name f-24 fw-5">
+                    {UserState.first_name} {UserState.last_name}
+                </span>
             </div>
         </ContentAvartarUser>
     );

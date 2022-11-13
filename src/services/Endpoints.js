@@ -5,5 +5,6 @@ export const endpoints = {
     createAccount: '/accounts',
     login: '/auth/login',
     currentUser: '/auth/me',
-    currentAccount: '/accounts/me'
+    currentAccount: '/accounts/me',
+    updateUser: '/users/'
 };

@@ -40,6 +40,13 @@ export const GlobalStyle = createGlobalStyle`
         align-items: center;
     }
 
+    .gap-2 {
+        gap: 20px
+    }
+    .column {
+        flex-direction: column;
+    }
+
     .no-scroll {
         overflow: hidden;
         max-height: 100vh;

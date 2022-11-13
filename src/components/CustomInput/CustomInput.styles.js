@@ -33,6 +33,10 @@ export const ContentCustomInput = styled.div`
         box-shadow: 0 1px 1px #83b6be inset, 0 0 8px #83b6be;
         outline: 0 none;
     }
+    .input:disabled {
+        background: ${({ theme }) => theme.c_text.disabled};
+        color: ${({ theme }) => theme.c_text.gray};
+    }
 
     .input:focus ~ .label {
         color: ${({ theme }) => theme.colors.primary};

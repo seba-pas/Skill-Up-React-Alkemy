@@ -81,14 +81,15 @@ function SignUp() {
 
             const dataUser = {
                 token: signInUser.data.accessToken,
-                name: `${signUpUser.data.first_name} ${signUpUser.data.last_name}`,
+                first_name: signUpUser.data.first_name,
+                last_name: signUpUser.data.last_name,
                 email: signUpUser.data.email,
-                roleId: signUpUser.data.roleId,
+                role_id: signUpUser.data.roleId,
                 points: signUpUser.data.points,
                 user_id: signUpUser.data.id,
                 account_id: createAccount.data.id,
                 money: createAccount.data.money,
-                isBlocked: createAccount.data.isBlocked
+                is_blocked: createAccount.data.isBlocked
             };
 
             dispacth(updateUser(dataUser));

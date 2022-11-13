@@ -78,6 +78,15 @@ export const dataApi = createApi({
                     toAccountId
                 }
             })
+        }),
+        resetPassword: builder.mutation({
+            query: ({ id, password }) => ({
+                url: `/users/resetPassword/${id}`,
+                method: 'PATCH',
+                body: {
+                    password
+                }
+            })
         })
     })
 });
@@ -92,5 +101,6 @@ export const {
     useNewAccountMutation,
     useDepositCashMutation,
     useNewExpenseMutation,
-    useNewTransactionMutation
+    useNewTransactionMutation,
+    useResetPasswordMutation
 } = dataApi;

@@ -21,7 +21,8 @@ export const theme = {
     c_text: {
         principal: '#212121',
         gray: '#858585',
-        white: '#ffffff'
+        white: '#ffffff',
+        disabled: '#85858530'
     },
     rounded: {
         s: '5px',
