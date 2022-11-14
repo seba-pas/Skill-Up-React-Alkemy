@@ -14,7 +14,7 @@ function TopUp() {
     useEffect(() => {
         if (amount < 0) {
             Swal.fire('', 'Debe ingresar un número positivo', 'error');
-            setAmount(0);
+            setAmount('');
         }
     }, [amount]);
     function handleSubmit(e) {
@@ -22,7 +22,7 @@ function TopUp() {
         const id = UserState.account_id;
         if (amount <= 0) {
             Swal.fire('', 'Debe ingresar un monto mayor que 0', 'error');
-            setAmount(0);
+            setAmount('');
         }
         if (!concept) {
             Swal.fire('', 'Por favor ingrese un concepto de carga', 'error');

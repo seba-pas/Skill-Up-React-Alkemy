@@ -23,10 +23,9 @@ function Balance() {
     }
     useEffect(() => {
         if (amount < 0) {
-            Swal.fire('', 'Debe ingresar un número positivo', 'error');
             setAmount('');
-        }
-        if (amount !== '') {
+            Swal.fire('', 'Debe ingresar un número positivo', 'error');
+        } else if (amount !== '') {
             setAmount(Number(amount));
         }
     }, [amount]);
